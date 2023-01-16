@@ -4,7 +4,7 @@ Once the selective editing method is available on your computer you will be
 able to call the method and perform selective editing on a dataset. The
 basic selective editing method is:
 
-Score = 100 X (a * |z - y|) / T
+Score = 100 * (a * |z - y|) / T
 
 * a is the design weight
 * z is the return value
