@@ -7,3 +7,7 @@ This repository holds supporting documentation for the methods available from th
 ## Method Information
 
 User documentation related to [methods released in the SML](https://github.com/ONSdigital/sml-supporting-info/method-info)
+
+## Notes on testing
+
+Notes on [testing](https://github.com/ONSdigital/sml-supporting-info/method-info/notesOnTesting) explain what test covergae we have and plans for future testing
