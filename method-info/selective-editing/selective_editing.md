@@ -59,7 +59,7 @@ right columns from the dataframe:
 
 ```
 import pandas as pd
-import new_selective_editing as seled
+import selective_editing as seled
 
 # Location of csv file
 datafile = "example_test_data.csv"
