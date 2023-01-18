@@ -6,8 +6,8 @@ This repository holds supporting documentation for the methods available from th
 * Reference papers related to the statistical methods
 ## Method Information
 
-User documentation related to [methods released in the SML](https://github.com/ONSdigital/sml-supporting-info/method-info)
+User documentation related to [methods released in the SML](https://github.com/ONSdigital/sml-supporting-info/tree/main/method-info)
 
 ## Notes on testing
 
-Notes on [testing](https://github.com/ONSdigital/sml-supporting-info/method-info/notesOnTesting) explain what test coverage we have and plans for future testing.
+Notes on [testing](https://github.com/ONSdigital/sml-supporting-info/tree/main/method-info/notesOnTesting) explain what test coverage we have and plans for future testing.
