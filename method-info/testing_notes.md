@@ -113,10 +113,11 @@
 
    * Help center tests
 user guidance, code and specification link tests
-   * Method links
+   * Method links (Update: Completed and now part of existing tests)
    * Filter tests
    * Dropdown tests
-   * Home button and banner links
+   * Home button
+   * Header links (Update: Header links now part of exiting tests)
    * Error pages and codes
 
 2. Snapshot testing
