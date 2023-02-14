@@ -157,3 +157,5 @@ to expected end date).
 over the days set by the user.
 * Date adjusted Q20: The adjusted question value based on the sum of the trading
 days weights ratio.
+
+For Copyright information, please see LICENCE.
