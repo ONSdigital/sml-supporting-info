@@ -112,3 +112,5 @@ score calculation and therefore uses the auxiliary value, we can see in the
 sheet that it's blank but also question_1_pm is False which shows that the
 auxiliary is used. The rest of the respondents have the predicted value
 available, question_1_pm is True.
+
+For Copyright information, please see LICENCE.
