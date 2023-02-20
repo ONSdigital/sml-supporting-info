@@ -1,5 +1,9 @@
 # Date Adjustment User Notes
 
+## Finding and Installing the Method
+You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/index) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
+
+## Using the Method
 Once the date adjustment method is available on your computer you will be able
 to call the method and perform date adjustment on a dataset. The basic date
 adjustment method is:
@@ -103,19 +107,19 @@ import pandas as pd
 import date_adjustment as date_adjust
 
 # Import datafile containing the respondent's data
-datafile = "DA_user_notes_test_data.csv"
+datafile = "date_adjustment_input_data_example_1.csv"
 
 df = pd.read_csv(datafile)
 
 # Import trading day weights file
-trading_day_datafile = "DA_user_notes_trading_day_weights.csv"
+trading_day_datafile = "date_adjustment_trading_day_weights_example_1.csv"
 
 trading_df = pd.read_csv(trading_day_datafile)
 
 # Match up column names with with variables below
 output = date_adjust.date_adjustment(input_dataframe = df, # Respondent's input dataframe
                     trading_weights = trading_df, # trading day weights dataframe
-                    target_columns = ['Q20'], # The variable that needs to be date adjsuted
+                    target_columns = ['Q20'], # The variable that needs to be date adjusted
                     contributor_returned_start_date_col = "Contributors start date", # Contributor returned start date
                     contributor_returned_end_date_col = "Contributors end date", # Contributor returned end date
                     expected_start_date_col = "Expected start date", # Expected start date
@@ -136,7 +140,7 @@ output = date_adjust.date_adjustment(input_dataframe = df, # Respondent's input 
                     )
                     
 # Exporting the output file to csv
-output.to_csv("user_notes_test_data_output2.csv")
+output.to_csv("date_adjustment_output_data_example_1.csv")
 ```
 
 The output gets exported as a csv file and will give you the adjusted responses
@@ -158,4 +162,15 @@ over the days set by the user.
 * Date adjusted Q20: The adjusted question value based on the sum of the trading
 days weights ratio.
 
-For Copyright information, please see LICENCE.
+## Test Data
+The test data mentioned in the example above can be found alongside this user documentation
+
+## Additional Information
+The ONS Statistical Methods Library at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains further information about the methods including:
+- a methodological specification, which contains further detail about the mathematical definition of the method algorithm
+- a link to the github repository which contains detailed API information as part of the method code
+
+## License
+Unless stated otherwise, the SML codebase is released under the [MIT License](https://github.com/ONSdigital/sml-python-small/blob/main/LICENSE). This covers both the codebase and any sample code in the documentation.
+
+The documentation is available under the terms of the [Open Government 3.0 license](https://github.com/ONSdigital/sml-supporting-info/blob/main/LICENSE).

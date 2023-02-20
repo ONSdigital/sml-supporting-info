@@ -1,5 +1,10 @@
 # Selective Editing User Notes
 
+## Finding and Installing the Method
+You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/index) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
+
+
+## Using the Method
 Once the selective editing method is available on your computer you will be
 able to call the method and perform selective editing on a dataset. The
 basic selective editing method is:
@@ -59,10 +64,10 @@ right columns from the dataframe:
 
 ```
 import pandas as pd
-import selective_editing as seled
+import sml_small.selective_editing as seled
 
 # Location of csv file
-datafile = "example_test_data.csv"
+datafile = "selective_editing_input_data_example_1.csv"
 
 # Read in csv file above
 df = pd.read_csv(datafile)
@@ -77,7 +82,7 @@ output = seled.selective_editing(input_dataframe = df, # DataFrame of the test d
                                  minkowski_distance = 0, # Only used if Minkowski is selected in combination, set to 0 is minkowski is not selected
                                  show_sums = 0) # Provides additional data on score calculations
                                  
-output.to_csv("example_test_data_output.csv")
+output.to_csv("selective_editing_output_data_example_1.csv")
 ```
 
 The output gets exported as a csv file and will give you the scores and what
@@ -113,4 +118,15 @@ sheet that it's blank but also question_1_pm is False which shows that the
 auxiliary is used. The rest of the respondents have the predicted value
 available, question_1_pm is True.
 
-For Copyright information, please see LICENCE.
+## Test Data
+The test data mentioned in the example above can be found alongside this user documentation
+
+## Additional Information
+The ONS Statistical Methods Library at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains further information about the methods including:
+- a methodological specification, which contains further detail about the mathematical definition of the method algorithm
+- a link to the github repository which contains detailed API information as part of the method code
+
+## License
+Unless stated otherwise, the SML codebase is released under the [MIT License](https://github.com/ONSdigital/sml-python-small/blob/main/LICENSE). This covers both the codebase and any sample code in the documentation.
+
+The documentation is available under the terms of the [Open Government 3.0 license](https://github.com/ONSdigital/sml-supporting-info/blob/main/LICENSE).
