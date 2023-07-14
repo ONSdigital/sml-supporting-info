@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sml-supporting-info
+  description: Supporting documentation for the methods available from the Statistical Methods Library.
+  annotations:
+    jira/project-key: SPP
+    github.com/project-slug: ONSdigital/sml-supporting-info
+  tags:
+    - documentation
+    - sml
+  links:
+    - url: https://statisticalmethodslibrary.ons.gov.uk
+      title: SML Website
+      icon: search
+spec:
+  type: library
+  lifecycle: production
+  owner: group:spp-sml
