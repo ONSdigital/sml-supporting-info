@@ -10,7 +10,7 @@ This repository holds supporting documentation for the methods available from th
 
 User documentation provides a quick overview of the statistical method and example code of the method in use on some sample data.
 
-The [documentation template](https://github.com/ONSdigital/sml-supporting-info/tree/main/method-info/method-info) can be used to provide user documentation for a new method.
+The [documentation template](https://github.com/ONSdigital/sml-supporting-info/blob/main/method-info/method_user_note_template.md) can be used to provide user documentation for a new method.
 
 ## License
 Unless stated otherwise, the SML codebase is released under the [MIT License](https://github.com/ONSdigital/sml-python-small/blob/main/LICENSE). This covers both the codebase and any sample code in the documentation.
