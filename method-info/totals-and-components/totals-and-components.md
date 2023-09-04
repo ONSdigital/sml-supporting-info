@@ -94,11 +94,11 @@ The output is as follows:
 The received outputs are as follows:
 
 * Unique Identifier – Any e.g., Business Reporting Unit
-* absolute difference - the absolute difference between the predictive value and the sum of the original components
-* lower_percentage_threshold - the lower threshold calculated for the percentage range
-* higher_percentage_threshold - the higher threshold calculated for the percentage range
-* final_total - the final total will be corrected if applicable or will remain as the original if not
-* final_component - the final components will be corrected if applicable or will remain as original components if not
+* Absolute difference - the absolute difference between the predictive value and the sum of the original components
+* Lower percentage threshold - the lower threshold calculated for the percentage range
+* Higher percentage threshold - the higher threshold calculated for the percentage range
+* Final total - the final total will be corrected if applicable or will remain as the original if not
+* Final component - the final components will be corrected if applicable or will remain as original components if not
 
 ## Test Data
 The test data mentioned in the example above can be found alongside this user documentation
