@@ -16,14 +16,11 @@ if and what the method has corrected.
 
 * "S" is when the method stops
 * "N" is for no correction
-* "M" is for manual editing
-* "C" is for component correction
-* "T" is for totals correction
+* "M" is for manual editing this is where the record needs to be reviewed by a user
+* "C" is for component correction where the final components are corrected
+* "T" is for totals correction where the final totals are corrected
 
-From the methodology and technical specification we can see that the method accepts a structured input.
-The input parameters determine how the method operates and what kind of outputs we would expect from it.
-
-The core mathematical corrections are as total correction and component correction shown below respectively.
+The core mathematical corrections are total correction and component correction shown below respectively from the methodology specification.
 
 ```bash
     final_total = sum_of_components
@@ -37,6 +34,9 @@ and
 
 It is worth noting these are mutually exclusive and a result of many mathematical and logical steps. Therefore, to get a complete understanding of the above equations it is advisable to read the methodical or technical specifications.
 
+From the methodology and technical specification we can see that the method accepts a structured input.
+The input parameters determine how the method operates and what kind of outputs we would expect from it.
+
 Below is a snapshot of an example dataset and how the input data should
 look like:
 
@@ -47,10 +47,24 @@ look like:
 | 3 | 11 | [0,0,0,0] | False | 11 | 28 | None | 11 | None |
 | 4 | 10811 | [9201,866,632,112] | True | 10811 | 28 | None | None | 0.1 |
 | 5 | 12492 | [9201,866,632,112] | True | 12492 | 28 | None | None | 0.1 |
-To run the method using the example above you can follow these steps:
+
+This is constructed from the following:
+
+* Unique Identifier – Any e.g., Business Reporting Unit
+* Total Variable – Target period total, numeric
+* Components Variable – Corresponding list of Total variable's components,
+ numeric – nulls allowed
+* Amend Total – Select whether Total Variable for the target period should be
+ automatically corrected, Boolean
+* Predictive Variable – Previous or current period total, numeric
+* Precision - The precision value determines the level of accuracy for our floating point calculations
+* Auxiliary Variable – optional, numeric – nulls allowed
+* Absolute Difference Threshold - represented as a decimal
+* Percentage Difference Threshold - represented as a decimal
+
+To run the method using the example above you can use an IDE and create a python file as follows.
 
 ```python
-
 # Importing the totals_and_components method from the totals_and_components.py file
 from totals_and_components import totals_and_components
 
@@ -62,9 +76,11 @@ data = ["1", 1689, [(632), (732), (101), (165)], False, 1689, 10, None, 28, 0.1]
 result = totals_and_components(*data)
 ```
 
+Running this command will then give you the results from the totals and components area.
+
 Note there are other ways to run this method these can be seen [here](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components/example.py)
 
-The output data is determined by the tcc marker. Some values would be returned as null if they are not calculated.
+The output data is determined by the tcc marker. Some values would be returned as None if they are not calculated.
 The output is as follows:
 
 | identifier | absolute_difference | lower_percentage_threshold | upper_percentage_threshold | final_total | final_components | tcc_marker |
@@ -74,6 +90,15 @@ The output is as follows:
 | 3 | None | None | None | 11 | [0,0,0,0] | "S" |  <!-- Method has stopped and no outputs returned -->
 | 4 | None | 9729.9 | 11892.1 | 10811 | [9201,866,632,112] | "N" | <!-- No correction has been applied -->
 | 5 | None | 9729.9 | 11892.1 | 12492 | [9201,866,632,112] | "M" | <!-- Manual editing is required -->
+
+The received outputs are as follows:
+
+* Unique Identifier – Any e.g., Business Reporting Unit
+* absolute difference - the absolute difference between the predictive value and the sum of the original components
+* lower_percentage_threshold - the lower threshold calculated for the percentage range
+* higher_percentage_threshold - the higher threshold calculated for the percentage range
+* final_total - the final total will be corrected if applicable or will remain as the original if not
+* final_component - the final components will be corrected if applicable or will remain as original components if not
 
 ## Test Data
 The test data mentioned in the example above can be found alongside this user documentation
