@@ -97,9 +97,9 @@ The breakdown of the received outputs are as follows:
 * Final total - the final total will be corrected if applicable or will remain as the original if not
 * Final component - the final components will be corrected if applicable or will remain as original components if not
 
-### Pandas Wrapper
+### Example Usage
 
-Note there are other ways to run this method. One way of doing so is via the [pandas wrapper](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components)
+There are various ways of running this method. You can find more information regarding this on totals and components [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components)
 
 ## Test Data
 The test data mentioned in the example above can be found alongside this user documentation
