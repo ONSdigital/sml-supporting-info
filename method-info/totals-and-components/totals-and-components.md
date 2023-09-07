@@ -3,13 +3,9 @@
 ## Finding and Installing the Method
 You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/index) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
 
-Open the project in the IDE of choice and run 
-
-```bash
-poetry install --sync
-```
-
 ## Using the Method
+
+### Overview
 Once the totals and components method is available on your computer you will be
 able to call the method on a set of data. The tcc markers returned determine
 if and what the method has corrected.
@@ -36,6 +32,8 @@ It is worth noting these are mutually exclusive and a result of many mathematica
 
 From the methodology and technical specification we can see that the method accepts a structured input.
 The input parameters determine how the method operates and what kind of outputs we would expect from it.
+
+### Example Run Through
 
 Below is a snapshot of an example dataset and how the input data should
 look like:
@@ -66,8 +64,7 @@ To run the method using the example above you can use an IDE and create a python
 
 ```python
 # Importing the totals_and_components method from the totals_and_components.py file
-from totals_and_components import totals_and_components
-
+from sml_small.editing.totals_and_components import totals_and_components
 # The data we are going to pass into the T&C method
 data = ["1", 1689, [(632), (732), (101), (165)], False, 1689, 10, None, 28, 0.1]
 
@@ -78,7 +75,7 @@ result = totals_and_components(*data)
 
 Running this command will then give you the results from the totals and components area.
 
-Note there are other ways to run this method these can be seen [here](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components/example.py)
+### Example Output
 
 The output data is determined by the tcc marker. Some values would be returned as None if they are not calculated.
 The output is as follows:
@@ -91,7 +88,7 @@ The output is as follows:
 | 4 | None | 9729.9 | 11892.1 | 10811 | [9201,866,632,112] | "N" | <!-- No correction has been applied -->
 | 5 | None | 9729.9 | 11892.1 | 12492 | [9201,866,632,112] | "M" | <!-- Manual editing is required -->
 
-The received outputs are as follows:
+The breakdown of the received outputs are as follows:
 
 * Unique Identifier – Any e.g., Business Reporting Unit
 * Absolute difference - the absolute difference between the predictive value and the sum of the original components
@@ -99,6 +96,10 @@ The received outputs are as follows:
 * Higher percentage threshold - the higher threshold calculated for the percentage range
 * Final total - the final total will be corrected if applicable or will remain as the original if not
 * Final component - the final components will be corrected if applicable or will remain as original components if not
+
+### Pandas Wrapper
+
+Note there are other ways to run this method. One way of doing so is via the [pandas wrapper](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components)
 
 ## Test Data
 The test data mentioned in the example above can be found alongside this user documentation
