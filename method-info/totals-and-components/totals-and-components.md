@@ -10,7 +10,7 @@ Once the totals and components method is available on your computer you will be
 able to call the method on a set of data. The tcc markers returned determine
 if and what the method has corrected.
 
-* "S" is when the method stops
+* "S" is when the method stops early or the method is not completed
 * "N" is for no correction
 * "M" is for manual editing this is where the record needs to be reviewed by a user
 * "C" is for component correction where the final components are corrected
