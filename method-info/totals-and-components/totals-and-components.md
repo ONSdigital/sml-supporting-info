@@ -65,12 +65,26 @@ To run the method using the example above you can use an IDE and create a python
 ```python
 # Importing the totals_and_components method from the totals_and_components.py file
 from sml_small.editing.totals_and_components import totals_and_components
-# The data we are going to pass into the T&C method
-data = ["1", 1689, [(632), (732), (101), (165)], False, 1689, 10, None, 28, 0.1]
 
 # We can the totals_and_components function and pass in our data and save the return outputted by the T&C method in the variable result
 # We use * to unpack the above list into separate arguments to pass into the T&C method
-result = totals_and_components(*data)
+result = totals_and_components(
+                                identifier="1",
+                                total=1689,
+                                components=
+                                [
+                                    (632),
+                                    (732),
+                                    (101),
+                                    (165)
+                                ],
+                                amend_total=False,
+                                predictive=1689,
+                                precision=10,
+                                auxiliary=None,
+                                absolute_difference_threshold=28,
+                                percentage_difference_threshold=0.1
+                            )
 ```
 
 Running this command will then give you the results from the totals and components area.
