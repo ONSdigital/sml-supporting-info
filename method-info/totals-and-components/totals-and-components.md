@@ -66,8 +66,7 @@ To run the method using the example above you can use an IDE and create a python
 # Importing the totals_and_components method from the totals_and_components.py file
 from sml_small.editing.totals_and_components import totals_and_components
 
-# We can the totals_and_components function and pass in our data and save the return outputted by the T&C method in the variable result
-# We use * to unpack the above list into separate arguments to pass into the T&C method
+# We can pass in our data into the method and return the output saved to the results variable.
 result = totals_and_components(
                                 identifier="1",
                                 total=1689,
