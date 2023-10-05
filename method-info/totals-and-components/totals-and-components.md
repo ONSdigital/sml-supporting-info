@@ -1,14 +1,14 @@
 # Totals and Components User Notes
 
 ## Finding and Installing the Method
+
 You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/index) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
 
 ## Using the Method
 
 ### Overview
-Once the totals and components method is available on your computer you will be
-able to call the method on a set of data. The tcc markers returned determine
-if and what the method has corrected.
+
+Once the totals and components method is available on your computer you will be able to call the method on a set of data. The TCC markers returned determine if and what the method has corrected.
 
 * "S" is when the method stops early or the method is not completed
 * "N" is for no correction
@@ -19,19 +19,18 @@ if and what the method has corrected.
 The core mathematical corrections are total correction and component correction shown below respectively from the methodology specification.
 
 ```bash
-    final_total = sum_of_components
+final_total = sum_of_components
 ```
 
-and 
+and
 
 ```bash
-    final_component = (original_component / sum_of_components) * total
+final_component = (original_component / sum_of_components) * total
 ```
 
-It is worth noting these are mutually exclusive and a result of many mathematical and logical steps. Therefore, to get a complete understanding of the above equations it is advisable to read the methodical or technical specifications.
+It is worth noting these are mutually exclusive and a result of many mathematical and logical steps. Therefore, to get a complete understanding of the above equations it is advisable to read the methodology or technical specifications.
 
-From the methodology and technical specification we can see that the method accepts a structured input.
-The input parameters determine how the method operates and what kind of outputs we would expect from it.
+From the methodology and technical specification we can see that the method accepts a structured input. The input parameters determine how the method operates and what kind of outputs we would expect from it.
 
 ### Example Run Through
 
@@ -60,7 +59,7 @@ This is constructed from the following:
 * Absolute Difference Threshold - represented as a decimal
 * Percentage Difference Threshold - represented as a decimal
 
-To run the method using the example above you can use an IDE and create a python file as follows.
+To run the method using the example data above you can create a python a file in your desired IDE and do the following below:
 
 ```python
 # Importing the totals_and_components method from the totals_and_components.py file
@@ -90,7 +89,7 @@ Running this command will then give you the results from the totals and componen
 
 ### Example Output
 
-The output data is determined by the tcc marker. Some values would be returned as None if they are not calculated.
+The output data is determined by the TCC marker. Some values would be returned as None if they are not calculated.
 The output is as follows:
 
 | identifier | absolute_difference | lower_percentage_threshold | upper_percentage_threshold | final_total | final_components | tcc_marker |
@@ -115,14 +114,18 @@ The breakdown of the received outputs are as follows:
 There are various ways of running this method. You can find more information regarding this on totals and components [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components)
 
 ## Test Data
+
 The test data mentioned in the example above can be found alongside this user documentation
 
 ## Additional Information
+
 The ONS Statistical Methods Library at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains further information about the methods including:
-- a methodological specification, which contains further detail about the mathematical definition of the method algorithm
-- a link to the github repository which contains detailed API information as part of the method code
+
+* a methodological specification, which contains further detail about the mathematical definition of the method algorithm
+* a link to the github repository which contains detailed API information as part of the method code
 
 ## License
+
 Unless stated otherwise, the SML codebase is released under the [MIT License](https://github.com/ONSdigital/sml-python-small/blob/main/LICENSE). This covers both the codebase and any sample code in the documentation.
 
 The documentation is available under the terms of the [Open Government 3.0 license](https://github.com/ONSdigital/sml-supporting-info/blob/main/LICENSE).
