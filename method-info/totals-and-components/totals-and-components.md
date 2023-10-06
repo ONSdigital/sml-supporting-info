@@ -8,7 +8,9 @@ You can find instructions on downloading and installing the method in the [Help 
 
 ### Overview
 
-Once the totals and components method is available on your computer you will be able to call the method on a set of data. The TCC markers returned determine if and what the method has corrected.
+Once you have downloaded the sml-small wheel package you will be able to import the T&C method and pass in data.
+
+The TCC markers returned determine if and what the method has corrected.
 
 * "S" is when the method stops early or the method is not completed
 * "N" is for no correction
@@ -119,15 +121,15 @@ The breakdown of the received outputs are as follows:
 * Lower percentage threshold - the lower threshold calculated for the percentage range
 * Higher percentage threshold - the higher threshold calculated for the percentage range
 * Final total - the final total will be corrected if applicable or will remain as the original if not
-* Final component - the final components will be corrected if applicable or will remain as original components if not
+* Final component - the final components will be corrected if applicable, if not it will remain as original components
 
 ### Example Usage
 
-There are various ways of running this method. You can find more information regarding this on totals and components [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components)
+There are various ways of running this method. You can find more information regarding this on totals and components [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components).
 
 ## Test Data
 
-The test data mentioned in the example above can be found alongside this user documentation
+The test data mentioned in the example above can be found alongside this user documentation.
 
 ## Additional Information
 
