@@ -62,11 +62,14 @@ This is constructed from the following:
 To run the method using the example data above you can create a python a file in your desired IDE and do the following below:
 
 ```python
-# To import this method we are first navigating to the sml_small/editing/totals_and_components
-# directory and the totals_and_components python file to import the totals_and_components function.
+# To import this method we are first navigating to the
+# sml_small/editing/totals_and_components directory and
+# the totals_and_components python file
+# to import the totals_and_components function.
 from sml_small.editing.totals_and_components.totals_and_components import totals_and_components
 
-# We can pass our data into the method and save the output to the results variable.
+# We can pass our data into the method and save the output to the
+# results variable.
 result = totals_and_components(
     identifier="1",
     total=1689,
@@ -86,9 +89,11 @@ result = totals_and_components(
 )
 
 # The output will be returned as an object.
-# You will need to destructure the object to extract the values using vars().
-# vars() is used to return the __dict__attribute for the specified module, class,
-# instance or any other object with a __dict__attribute
+# You will need to destructure the object to extract the values and
+# one way of doing this is using the built-in function vars().
+# vars() is used to return the __dict__attribute for the specified
+# module, class, instance or any other object with a
+# __dict__attribute
 print(vars(result))
 ```
 
@@ -126,7 +131,7 @@ The test data mentioned in the example above can be found alongside this user do
 
 ## Additional Information
 
-The ONS Statistical Methods Library at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains further information about the methods including:
+The ONS Statistical Methods Library website [methods page](https://statisticalmethodslibrary.ons.gov.uk/methods) contains further information about the methods including:
 
 * a methodological specification, which contains further detail about the mathematical definition of the method algorithm
 * a link to the github repository which contains detailed API information as part of the method code
