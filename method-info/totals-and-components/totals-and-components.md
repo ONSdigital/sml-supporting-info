@@ -30,9 +30,9 @@ and
 final_component = (original_component / sum_of_components) * total
 ```
 
-It is worth noting these are mutually exclusive and a result of many mathematical and logical steps. Therefore, to get a complete understanding of the above equations it is advisable to read the methodology or technical specifications.
+It is worth noting these are mutually exclusive and a result of many mathematical and logical steps. Therefore, to get a complete understanding of the above equations it is advisable to read the methodology specification.
 
-From the methodology and technical specification we can see that the method accepts a structured input. The input parameters determine how the method operates and what kind of outputs we would expect from it.
+From the methodology specification we can see that the method accepts a structured input. The input parameters determine how the method operates and what kind of outputs we would expect from it.
 
 ### Example Run Through
 
@@ -49,7 +49,7 @@ look like:
 
 This is constructed from the following:
 
-* Unique Identifier – Any e.g., Business Reporting Unit
+* Unique Identifier – Any e.g. Business Reporting Unit
 * Total Variable – Target period total, numeric
 * Components Variable – Corresponding list of Total variable's components,
  numeric – nulls allowed
@@ -61,7 +61,7 @@ This is constructed from the following:
 * Absolute Difference Threshold - represented as a decimal
 * Percentage Difference Threshold - represented as a decimal
 
-To run the method using the example data above you can create a python a file in your desired IDE and do the following below:
+To run the method using the example data above you can create a python file in your desired IDE and do the following below:
 
 ```python
 # To import this method we are first navigating to the
@@ -108,7 +108,7 @@ The output is as follows:
 
 | identifier | absolute_difference | lower_percentage_threshold | upper_percentage_threshold | final_total | final_components | tcc_marker |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 59 | 1467 | 1793 | 1689 | [654.8760735,758.4957055,104.6558282,170.9723927] | C | <!-- Components have been corrected  -->
+| 1 | 59 | 1467 | 1793 | 1689 | [654.8760735,758.4957055,104.6558282,170.9723927] | "C" | <!-- Components have been corrected  -->
 | 2 | 11 | None | None | 11 | [7,0,2,2] | "T" | <!-- Total value has been corrected -->
 | 3 | None | None | None | 11 | [0,0,0,0] | "S" |  <!-- Method has stopped and no outputs returned -->
 | 4 | None | 9729.9 | 11892.1 | 10811 | [9201,866,632,112] | "N" | <!-- No correction has been applied -->
@@ -116,27 +116,25 @@ The output is as follows:
 
 The breakdown of the received outputs are as follows:
 
-* Unique Identifier – Any e.g., Business Reporting Unit
+* Unique Identifier – Any e.g. Business Reporting Unit
 * Absolute difference - the absolute difference between the predictive value and the sum of the original components
 * Lower percentage threshold - the lower threshold calculated for the percentage range
 * Higher percentage threshold - the higher threshold calculated for the percentage range
 * Final total - the final total will be corrected if applicable or will remain as the original if not
 * Final component - the final components will be corrected if applicable, if not it will remain as original components
 
-### Example Usage
+### Additional Examples
 
-There are various ways of running this method. You can find more information regarding this on totals and components [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components).
+For more examples of using this method with CSV files or by implementing the pandas package see the totals_and_components source code[documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components).
 
 ## Test Data
 
-The test data mentioned in the example above can be found alongside this user documentation.
+The [test data mentioned in the example above](https://github.com/ONSdigital/sml-supporting-info/blob/main/method-info/totals-and-components/example-data) can be found alongside this user documentation.
 
 ## Additional Information
 
-The ONS Statistical Methods Library website [methods page](https://statisticalmethodslibrary.ons.gov.uk/methods) contains further information about the methods including:
-
-* a methodological specification, which contains further detail about the mathematical definition of the method algorithm
-* a link to the github repository which contains detailed API information as part of the method code
+The ONS Statistical Methods Library website [methods page](https://statisticalmethodslibrary.ons.gov.uk/methods) contains further information about the methods including a methodological specification, which contains further detail about the mathematical definition of the method algorithm
+and a link to the github repository which contains detailed API information as part of the method code.
 
 ## License
 
