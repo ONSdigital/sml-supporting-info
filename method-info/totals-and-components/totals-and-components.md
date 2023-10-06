@@ -2,7 +2,7 @@
 
 ## Finding and Installing the Method
 
-You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/index) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
+You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/access/run-a-method) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
 
 ## Using the Method
 
@@ -62,27 +62,34 @@ This is constructed from the following:
 To run the method using the example data above you can create a python a file in your desired IDE and do the following below:
 
 ```python
-# Importing the totals_and_components method from the totals_and_components.py file
-from sml_small.editing.totals_and_components import totals_and_components
+# To import this method we are first navigating to the sml_small/editing/totals_and_components
+# directory and the totals_and_components python file to import the totals_and_components function.
+from sml_small.editing.totals_and_components.totals_and_components import totals_and_components
 
 # We can pass our data into the method and save the output to the results variable.
 result = totals_and_components(
-                                identifier="1",
-                                total=1689,
-                                components=
-                                [
-                                    (632),
-                                    (732),
-                                    (101),
-                                    (165)
-                                ],
-                                amend_total=False,
-                                predictive=1689,
-                                precision=10,
-                                auxiliary=None,
-                                absolute_difference_threshold=28,
-                                percentage_difference_threshold=0.1
-                            )
+    identifier="1",
+    total=1689,
+    components=
+    [
+        (632),
+        (732),
+        (101),
+        (165)
+    ],
+    amend_total=False,
+    predictive=1689,
+    precision=10,
+    auxiliary=None,
+    absolute_difference_threshold=28,
+    percentage_difference_threshold=0.1
+)
+
+# The output will be returned as an object.
+# You will need to destructure the object to extract the values using vars().
+# vars() is used to return the __dict__attribute for the specified module, class,
+# instance or any other object with a __dict__attribute
+print(vars(result))
 ```
 
 Running this command will then give you the results from the totals and components area.
