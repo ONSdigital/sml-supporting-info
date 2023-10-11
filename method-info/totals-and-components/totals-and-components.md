@@ -125,7 +125,7 @@ The breakdown of the received outputs are as follows:
 
 ### Additional Examples
 
-For more examples of using this method with CSV files or by implementing the pandas package see the totals_and_components source code[documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components).
+For more examples of using this method with CSV files or by implementing the pandas package see the totals_and_components source code [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/totals_and_components).
 
 ## Test Data
 
