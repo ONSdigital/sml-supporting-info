@@ -108,20 +108,20 @@ The output is as follows:
 
 | identifier | absolute_difference | lower_percentage_threshold | upper_percentage_threshold | final_total | final_components | tcc_marker |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 59 | 1467 | 1793 | 1689 | [654.8760735,758.4957055,104.6558282,170.9723927] | "C" | <!-- Components have been corrected  -->
-| 2 | 11 | None | None | 11 | [7,0,2,2] | "T" | <!-- Total value has been corrected -->
-| 3 | None | None | None | 11 | [0,0,0,0] | "S" |  <!-- Method has stopped and no outputs returned -->
-| 4 | None | 9729.9 | 11892.1 | 10811 | [9201,866,632,112] | "N" | <!-- No correction has been applied -->
-| 5 | None | 9729.9 | 11892.1 | 12492 | [9201,866,632,112] | "M" | <!-- Manual editing is required -->
+| 1 | "59" | "1467" | "1793" | "1689" | ["654.8760735" ,"758.4957055", "104.6558282", "170.9723927"] | "C" | <!-- Components have been corrected  -->
+| 2 | "11" | "None" | "None" | "11" | ["7", "0", "2", "2"] | "T" | <!-- Total value has been corrected -->
+| 3 | "None" | "None" | "None" | "11" | ["0", "0", "0", "0"] | "S" |  <!-- Method has stopped and no outputs returned -->
+| 4 | "None" | "9729.9" | "11892.1" | "10811" | ["9201", "866", "632", "112"] | "N" | <!-- No correction has been applied -->
+| 5 | "None" | "9729.9" | "11892.1" | "12492" | ["9201", "866", "632", "112"] | "M" | <!-- Manual editing is required -->
 
 The breakdown of the received outputs are as follows:
 
 * Unique Identifier – Any e.g. Business Reporting Unit
-* Absolute difference - the absolute difference between the predictive value and the sum of the original components
-* Lower percentage threshold - the lower threshold calculated for the percentage range
-* Higher percentage threshold - the higher threshold calculated for the percentage range
-* Final total - the final total will be corrected if applicable or will remain as the original if not
-* Final component - the final components will be corrected if applicable, if not it will remain as original components
+* Absolute difference - the absolute difference between the predictive value and the sum of the original components returned as a string
+* Lower percentage threshold - the lower threshold calculated for the percentage range returned as a string
+* Higher percentage threshold - the higher threshold calculated for the percentage range returned as a string
+* Final total - the final total will be corrected if applicable or will remain as the original if not returned as a string
+* Final component - the final components will be corrected if applicable, if not it will remain as original components returned as a string
 
 ### Additional Examples
 
