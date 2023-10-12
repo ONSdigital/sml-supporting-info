@@ -117,11 +117,11 @@ The output is as follows:
 The breakdown of the received outputs are as follows:
 
 * Unique Identifier – Any e.g. Business Reporting Unit
-* Absolute difference - the absolute difference between the predictive value and the sum of the original components returned as a string, None or Nan type
-* Lower percentage threshold - the lower threshold calculated for the percentage range returned as a string, None or Nan type
-* Higher percentage threshold - the higher threshold calculated for the percentage range returned as a string, None or Nan type
-* Final total - the final total will be corrected if applicable or will remain as the original if not returned as a string, None or Nan type
-* Final component - the final components will be corrected if applicable, if not it will remain as original components returned as a string, None or Nan type
+* Absolute difference - the absolute difference between the predictive value and the sum of the original components returned as a string, None or NaN type
+* Lower percentage threshold - the lower threshold calculated for the percentage range returned as a string, None or NaN type
+* Higher percentage threshold - the higher threshold calculated for the percentage range returned as a string, None or NaN type
+* Final total - the final total will be corrected if applicable or will remain as the original if not returned as a string, None or NaN type
+* Final component - the final components will be corrected if applicable, if not it will remain as original components returned as a string, None or NaN type
 
 ### Additional Examples
 
