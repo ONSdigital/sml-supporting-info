@@ -94,9 +94,15 @@ print(vars(output))
 Example output table:
 
 | unique_identifier | principal_final_value | target_variables | tpc_ratio | tpc_marker |
-| --- | --- | --- | --- | ---
+| --- | --- | --- | --- | --- |
 | '12340000001-201409-q100' | '5.0E+4' | [Target_variable(identifier='q101', original_value='500', final_value='0.5'), Target_variable(identifier='q102', original_value='1000', final_value='1'), Target_variable(identifier='q103', original_value='1500', final_value='1.5'), Target_variable(identifier='q104', original_value=None, final_value=None)] | '8.3E+2' | 'C' |
 
+Output attributes:
+* unique_identifier - Unique identifier e.g. a question code/ruref/period/id/combination of all of these
+* principal_final_value – Output value that may or may not be adjusted
+* target_variables - adjusted identifier/value pairs (returned as Target_variable objects)
+* tpc_ratio – Ratio of the principal variable against good/predictive/aux response
+* tpc_marker - 'C' for correction applied, 'N' for no correction applied, 'S' for method stop / error
 
 ## Pandas Wrapper
 
