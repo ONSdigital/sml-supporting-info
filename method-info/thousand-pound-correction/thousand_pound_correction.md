@@ -132,6 +132,7 @@ pip install numpy
 
 We have an example of how to do this in the `pandas_example.py` file within the `utils` directory.
 
+An example pandas wrapper output CSV file has been provided in the example_data folder.
 ### Additional Examples
 
 For more examples of using this method with CSV files or by implementing the pandas package see the totals_and_components source code [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/thousand_pounds).
