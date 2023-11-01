@@ -56,7 +56,7 @@ def thousand_pounds(
     # 'previous' period
     upper_limit: float,  # Upper bound of 'error value' threshold
     lower_limit: float,  # Lower bound of 'error value' threshold
-    target_variables: List[Target_variable], # identifier/value pairs
+    target_variables: List[TargetVariable], # identifier/value pairs
     precision: Optional[int],  # Precision is used by the decimal
     # package to ensure a specified accuracy
     # used throughout method processing
@@ -87,7 +87,7 @@ print(vars(output))
 ```
 
 ```bash
-{'unique_identifier': '12340000001-201409-q100', 'principal_final_value': '5.0E+4', 'target_variables': [Target_variable(identifier='q101', original_value='500', final_value='0.5'), Target_variable(identifier='q102', original_value='1000', final_value='1'), Target_variable(identifier='q103', original_value='1500', final_value='1.5'), Target_variable(identifier='q104', original_value=None, final_value=None)], 'tpc_ratio': '8.3E+2', 'tpc_marker': 'C'}
+{'unique_identifier': '12340000001-201409-q100', 'principal_final_value': '5.0E+4', 'target_variables': [TargetVariable(identifier='q101', original_value='500', final_value='0.5'), TargetVariable(identifier='q102', original_value='1000', final_value='1'), TargetVariable(identifier='q103', original_value='1500', final_value='1.5'), TargetVariable(identifier='q104', original_value=None, final_value=None)], 'tpc_ratio': '8.3E+2', 'tpc_marker': 'C'}
 
 ```
 
