@@ -103,6 +103,7 @@ Output attributes:
 * target_variables - adjusted identifier/value pairs (returned as Target_variable objects)
 * tpc_ratio – Ratio of the principal variable against good/predictive/aux response
 * tpc_marker - 'C' for correction applied, 'N' for no correction applied, 'S' for method stop / error
+An example output CSV file has been provided in the example_data folder.
 
 ## Pandas Wrapper
 
@@ -132,7 +133,6 @@ pip install numpy
 
 We have an example of how to do this in the `pandas_example.py` file within the `utils` directory.
 
-An example pandas wrapper output CSV file has been provided in the example_data folder.
 
 ### Additional Examples
 
