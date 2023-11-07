@@ -136,11 +136,11 @@ We have an example of how to do this in the `pandas_example.py` file within the 
 
 ### Additional Examples
 
-For more examples of using this method with CSV files or by implementing the pandas package see the totals_and_components source code [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/thousand_pounds).
+For more examples of using this method with CSV files or by implementing the pandas package see the thousand_pounds source code [documentation page](https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/thousand_pounds).
 
 ## Test Data
 
-The [test data mentioned in the example above](https://github.com/ONSdigital/sml-supporting-info/blob/main/method-info/thousand_pounds/example-data) can be found alongside this user documentation.
+The [test data mentioned in the example above](https://github.com/ONSdigital/sml-supporting-info/tree/b42cf2d112bee6937efd54171aada5346e4df532/method-info/thousand-pound-correction/example_data) can be found alongside this user documentation.
 
 ## Additional Information
 The ONS Statistical Methods Library at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains further information about the methods including:
