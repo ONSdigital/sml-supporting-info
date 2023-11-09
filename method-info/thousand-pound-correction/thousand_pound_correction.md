@@ -14,9 +14,9 @@ The TPC markers returned determine if and what the method has corrected.
 
 * "S" is when the method stops early or the method is not completed
 * "N" is for no correction
-* "C" is for correction, where a correction has been applied to the target variables
+* "C" is for correction, where a correction has been applied to the principal variable and selected target variables
 
-The core mathematical correction applied to selected target variables is shown below.
+The core mathematical correction applied to the principal variable and selected target variables is shown below.
 
 ```bash
 corrected_value = value / 1000
@@ -100,7 +100,7 @@ Example output table:
 Output attributes:
 * unique_identifier - Unique identifier e.g. a question code/ruref/period/id/combination of all of these
 * principal_final_value – Output value that may or may not be adjusted
-* target_variables - adjusted identifier/value pairs (returned as TargetVariable objects)
+* target_variables - adjusted identifier/value pairs which may or may not be adjusted (returned as TargetVariable objects)
 * tpc_ratio – Ratio of the principal variable against good/predictive/aux response
 * tpc_marker - 'C' for correction applied, 'N' for no correction applied, 'S' for method stop / error
 An example output CSV file has been provided in the example_data folder.
