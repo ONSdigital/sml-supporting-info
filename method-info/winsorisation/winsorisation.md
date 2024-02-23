@@ -63,7 +63,7 @@ $$ w = designweight $$
 
 When _weight_ **w** == 1 the marker is set as "NW_FE" and the row is removed from further calculations for Winsorisation.
 
-For a _weight_ **w** not equal to 1, where _target values_ are **y** the _mean target values_, **$ \bar{y} $** are caluculated as:
+For a _weight_ **w** not equal to 1, where _target values_ are **y** the _mean target values_, **$\bar{y}$** are caluculated as:
 
 $$ \bar{y} = \frac{i}{n} \sum_{i=1}^{n} y_i $$
 
@@ -87,7 +87,7 @@ _weighted target_ **ay**
 
 $$ay = designweight * targetvalue$$
 
-_sum of weighted targets_ $ sy $ is calculated:
+_sum of weighted targets_ $sy$ is calculated:
 
 $$sy = \sum ay $$
 
@@ -95,7 +95,7 @@ _weighted auxilary_ **ax**
 
 $$ ax = design weight * auxiliary $$
 
-_sum of weighted auxiliary_ $ sx $ is calculated:
+_sum of weighted auxiliary_ $sx$ is calculated:
 
 $$ sx = \sum ax $$
 
@@ -117,19 +117,19 @@ The threshold, **k** derived from either Expansion or Ratio Estimation is then u
 
 For each row of data the _target value_ is compared with the calculated _threshold_, **k** and a _modified target value_ **$ y^* $** is computed:
 
-When _target value_, **$ y $** is <= _threshold_, **k** the _modified target_ equals the _target value_ :
+When _target value_, **$y$** is <= _threshold_, **k** the _modified target_ equals the _target value_ :
 
 $$ y^* = y $$
 
-When _target value_, $y$ is > _threshold_, **k** the _modified target_ is calculated as :
+When _target value_, **$y$** is > _threshold_, **k** the _modified target_ is calculated as :
 
 $$ y^* = \frac{y}{w} +(1-(\frac{1}{w}))*k $$
 
-The _outlier weight_, **$ o $** can then be calculated as:
+The _outlier weight_, **$o$** can then be calculated as:
 
 $$ o = \frac{y^*}{y} $$
 
-Where the _target value_ was unchanged, because it didn't exceed the computed _threshold_, the _outlier weight_, **$ o $** will be equal to **1**
+Where the _target value_ was unchanged, because it didn't exceed the computed _threshold_, the _outlier weight_, **$o$** will be equal to **1**
 
 ## One-sided Winsorisation with Expansion Estimation Example
 
@@ -156,25 +156,25 @@ _Note: No Auxiliary or Calibration Factor values provided, hence Expansion Estim
 
 _weight_ is taken from design weight:
 
-$ w = 100 $
+$w = 100$
 
 _mean target value_ is calulated:
 
-$ \bar{y} = \frac{50+55+60+40+45}{5} = 50 $
+$\bar{y} = \frac{50+55+60+40+45}{5} = 50$
 
 _threshold_ is calculated using the _mean target value_, _design weight_ and the _L value_:
 
-$ k = 50 + (\frac{3000}{(100-1)}) = 80.3030 $
+$k = 50 + (\frac{3000}{(100-1)}) = 80.3030$
 
 All _target values_ are less than the computed _threshold_, k
 
 _modified target value_ equals the _target value_, y
 
-$ y^* = y $
+$y^* = y$
 
 for each _target value_, _outlier weight_, o is calculated as **1**
 
-$ o = \frac{y^*}{y} = $ e.g $ \frac{50}{50} = 1$
+$o = \frac{y^*}{y} = $ e.g $ \frac{50}{50} = 1$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
@@ -182,33 +182,33 @@ As each row was considered for Winsorisation the associated marker is set as "W"
 
 _weight_ is taken from design weight:
 
-$ w = 50 $
+$w = 50$
 
 _mean target value_ is calulated:
 
-$ \bar{y} = \frac{120+110+115+125+700}{5} = 234 $
+$\bar{y} = \frac{120+110+115+125+700}{5} = 234$
 
 _threshold_ is calculated using the _mean target value_, _design weight_ and the _L value_:
 
-$ k = 234 + (\frac{3000}{(50-1)}) = 295.2245 $
+$k = 234 + (\frac{3000}{(50-1)}) = 295.2245$
 
 Each _target values_ is compared to the _threshold_, k
 
 Where the _target value_ is less than or equal to the _threshold_ the _modified target value_ equals the _target value_, y
 
-$ y^* = y $
+$y^* = y$
 
 Where the _target value_ exceeds the _threshold_ the _modified target value_ is calculated using the _weight_ and _threshold_
 
-$ y^* = \frac{700}{50} +(1-(\frac{1}{50}))*295.2245 = 303.32 $
+$y^* = \frac{700}{50} +(1-(\frac{1}{50}))*295.2245 = 303.32$
 
 For each _target value_ that was less than or equal to the _threshold_, _outlier weight_, o is calculated as **1**
 
-$ o = \frac{y^*}{y} = $ e.g $ \frac{120}{120} = 1$
+$o = \frac{y^*}{y} = $ e.g $ \frac{120}{120} = 1$
 
 Where the _target value_ exceeds the _threshold_ _outlier weight_, o is calculated as:
 
-$ o = \frac{y^*}{y} = \frac{303.32}{700} = 0.4333 $
+$o = \frac{y^*}{y} = \frac{303.32}{700} = 0.4333$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
@@ -251,73 +251,73 @@ _weight_ is taken from the product of the calibration factor and the design weig
 
 e.g row 1:
 
-$ w = 0.8 * 50 = 40$
+$w = 0.8 * 50 = 40$
 
 For rows that have a _weight_ exceeding 1 winsorisation is performed.
 
 _weighted target_, ay is calculated using the _design weight_ and _target value_
 
-$ ay = 50 * 92 = 4600 $
+$ay = 50 * 92 = 4600$
 
 _weighted auxiliary_, ax is calculated using the _design weight_ and _auxiliary_
 
-$ ax = 50 * 100 = 5000 $
+$ax = 50 * 100 = 5000$
 
 The _weighted target_ values of the rows considered for Winsorisation are summed to calculate the _sum weighted target values_, sy
 
-$ sy = (50 _92) + (50_ 500) + (50 _96) + (50_ 108) + (50 _101) + (20_ 295) + (20 _294) + (20_ 288) + (20 _298) + (20_ 288) = 74110
+$sy = (50 _92) + (50_ 500) + (50 _96) + (50_ 108) + (50 _101) + (20_ 295) + (20 _294) + (20_ 288) + (20 _298) + (20_ 288) = 74110$
 
 The _weighted auxiliary_ values of the rows considered for Winsorisation are summed to calculate the _sum weighted auxiliary_, sx
 
-$ sx = (50 * 100) + (50 * 110) + (50 * 90) + (50 * 105) + (50 * 100) + (20 * 300) + (20 * 290) + (20 * 290) + (20 * 297) + (20 * 305) = 54890 $
+$sx = (50 * 100) + (50 * 110) + (50 * 90) + (50 * 105) + (50 * 100) + (20 * 300) + (20 * 290) + (20 * 290) + (20 * 297) + (20 * 305) = 54890$
 
 The _weighted ratio of target and auxiliary_ **wta** is calculated as:
 
-$ wta = \frac{74110}{54890} = 1.350155 $
+$wta = \frac{74110}{54890} = 1.350155$
 
 For each row considered for winsorisation, a _unit_predict_value_ **mu**, is calculated as:
 
 e.g for row 1
 
-$ mu = 100 * 1.350155 = 135.01548 $
+$mu = 100 * 1.350155 = 135.01548$
 
 e.g for row 2
 
-$ mu = 110 * 1.350155 = 148.51705 $
+$mu = 110 * 1.350155 = 148.51705$
 
 Once these calculations are made a _threshold_ **k** can be calculated for each row to determine whether a _target value_ is an outlier or not:
 
 e.g for row 1
 
-$ k = 135.01548 + (\frac{2368.579001}{40 - 1}) = 195.74828 $
+$k = 135.01548 + (\frac{2368.579001}{40 - 1}) = 195.74828$
 
 e.g for row 2
 
-$ k = 148.51705 + (\frac{2368.579001}{40 - 1}) = 209.24984 $
+$k = 148.51705 + (\frac{2368.579001}{40 - 1}) = 209.24984$
 
 Each _target value_ is compared to the _threshold_, k
 
 Where the _target value_ is less than or equal to the _threshold_ the _modified target value_ equals the _target value_, y
 
-$ y^* = y $
+$y^* = y$
 
 Where the _target value_ exceeds the _threshold_ the _modified target value_ is calculated using the _weight_ and _threshold_
 
 e.g row 2 exceeds the threshold:
 
-$ y^* = \frac{500}{40} +(1-(\frac{1}{40}))* 209.24984 = 216.51859 $
+$y^* = \frac{500}{40} +(1-(\frac{1}{40}))* 209.24984 = 216.51859$
 
 For each _target value_ that was less than or equal to the _threshold_, _outlier weight_, o is calculated as **1**
 
 e.g row 1
 
-$ o = \frac{y^*}{y} = $ e.g $ \frac{92}{92} = 1$
+$o = \frac{y^*}{y} = $ e.g $ \frac{92}{92} = 1$
 
 Where the _target value_ exceeds the _threshold_ _outlier weight_, o is calculated as:
 
 e.g row 2
 
-$ o = \frac{y^*}{y} = \frac{216.51859}{500} = 0.433303 $
+$o = \frac{y^*}{y} = \frac{216.51859}{500} = 0.433303$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
