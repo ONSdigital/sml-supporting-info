@@ -174,7 +174,7 @@ $y^* = y$
 
 for each _target value_, _outlier weight_, o is calculated as **1**
 
-$o = \frac{y^*}{y} = $ e.g $ \frac{50}{50} = 1$
+$o = \frac{y^*}{y} =$ e.g $\frac{50}{50} = 1$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
@@ -204,7 +204,7 @@ $y^* = \frac{700}{50} +(1-(\frac{1}{50}))*295.2245 = 303.32$
 
 For each _target value_ that was less than or equal to the _threshold_, _outlier weight_, o is calculated as **1**
 
-$o = \frac{y^*}{y} = $ e.g $ \frac{120}{120} = 1$
+$o = \frac{y^*}{y} =$ e.g $\frac{120}{120} = 1$
 
 Where the _target value_ exceeds the _threshold_ _outlier weight_, o is calculated as:
 
@@ -265,7 +265,7 @@ $ax = 50 * 100 = 5000$
 
 The _weighted target_ values of the rows considered for Winsorisation are summed to calculate the _sum weighted target values_, sy
 
-$sy = (50 _92) + (50_ 500) + (50 _96) + (50_ 108) + (50 _101) + (20_ 295) + (20 _294) + (20_ 288) + (20 _298) + (20_ 288) = 74110$
+$sy = (50 * 92) + (50 * 500) + (50 * 96) + (50 * 108) + (50 * 101) + (20 * 295) + (20 * 294) + (20 * 288) + (20 * 298) + (20 * 288) = 74110$
 
 The _weighted auxiliary_ values of the rows considered for Winsorisation are summed to calculate the _sum weighted auxiliary_, sx
 
@@ -311,7 +311,7 @@ For each _target value_ that was less than or equal to the _threshold_, _outlier
 
 e.g row 1
 
-$o = \frac{y^*}{y} = $ e.g $ \frac{92}{92} = 1$
+$o = \frac{y^*}{y} =$ e.g $\frac{92}{92} = 1$
 
 Where the _target value_ exceeds the _threshold_ _outlier weight_, o is calculated as:
 
