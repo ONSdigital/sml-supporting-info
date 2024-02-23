@@ -121,7 +121,7 @@ When _target value_, **$ y $** is <= _threshold_, **k** the _modified target_ eq
 
 $$ y^* = y $$
 
-When _target value_, $ y $ is > _threshold_, **k** the _modified target_ is calculated as :
+When _target value_, $y$ is > _threshold_, **k** the _modified target_ is calculated as :
 
 $$ y^* = \frac{y}{w} +(1-(\frac{1}{w}))*k $$
 
