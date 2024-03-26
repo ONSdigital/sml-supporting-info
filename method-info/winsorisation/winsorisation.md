@@ -59,7 +59,7 @@ Used when values for auxiliary and calibration factor are **not** supplied.
 
 A _weight_ **w** is calculated for each row of data, for expansion estimation this is the supplied design weight
 
-$$ w = designweight $$
+$$ w = \text{design weight} $$
 
 When _weight_ **w** == 1 the marker is set as "NW_FE" and the row is removed from further calculations for Winsorisation.
 
@@ -77,7 +77,7 @@ Used when values for auxiliary and calibration factor **are** supplied.
 
 A _weight_ **w** is calculated for each row of data
 
-$$ w = calibrationfactor * designweight $$
+$$ w = \text{calibration factor} * \text{design weight} $$
 
 When _weight_ **w** <= 1 the marker is set as "NW_AG" and the row is removed from further calculations for Winsorisation.
 
@@ -85,7 +85,7 @@ For a _weight_ **w** > 1 the method calculates:
 
 _weighted target_ **ay**
 
-$$ay = designweight * targetvalue$$
+$$ay = \text{design weight} * \text{target value}$$
 
 _sum of weighted targets_ $sy$ is calculated:
 
@@ -93,7 +93,7 @@ $$sy = \sum ay $$
 
 _weighted auxilary_ **ax**
 
-$$ ax = design weight * auxiliary $$
+$$ ax = \text{design weight} * auxiliary $$
 
 _sum of weighted auxiliary_ $sx$ is calculated:
 
