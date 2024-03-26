@@ -8,7 +8,7 @@ You can find instructions on downloading and installing the method in the [Help 
 
 ### Overview
 
-The Winsorisation method is available as part of the statistical-methods-library package. It takes a dataframe as input that contains the data to be considered for Wisorisation. This method implements one-sided Winsorisation only.
+The Winsorisation method is available as part of the statistical-methods-library package. It takes a dataframe as input that contains the data to be considered for Winsorisation. This method implements one-sided Winsorisation only.
 
 #### Input Data
 
@@ -49,7 +49,7 @@ each target value
   in ratio estimation when the product of
   design weight and calibration factor is <= 1.
 
-The methodological specification avaialble at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains a detailed breakdown of the mathematics used in Winsorisation.
+The methodological specification available at [https://statisticalmethodslibrary.ons.gov.uk/](https://statisticalmethodslibrary.ons.gov.uk/) contains a detailed breakdown of the mathematics used in Winsorisation.
 
 A set of data is assessed to determine if there are any outliers that may adversely affect further processing of the data. Ratio or Expansion estimation is used to calculate a value that is used as a threshold and used with pre-supplied information (e.g L-value) and calculated weights to determine whether a target value must have an outlier weight calculated. The outlier weight can be used to reduce the target value closer to the derived threshold.
 
