@@ -317,7 +317,7 @@ Where the _target value_ exceeds the _threshold_ _outlier weight_, o is calculat
 
 e.g row 2
 
-$o = \frac{y^*}{y} = \frac{216.51859}{500} = 0.4333037166$
+$o = \frac{y^*}{y} = \frac{216.51859}{500} = 0.433037166$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
