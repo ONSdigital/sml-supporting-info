@@ -115,7 +115,7 @@ $$ k = mu + (\frac{L}{w - 1}) $$
 
 The threshold, **k** derived from either Expansion or Ratio Estimation is then used to determine whether a _target value_ exceeds the computed threshold. Values that exceed the threshold have an _outlier weight_, **o** calculated that is the ratio a value can be reduced by to bring it closer to the other target values in the group being analysed. It is this _outlier weight_ value that the Winsorisation method returns.
 
-For each row of data the _target value_ is compared with the calculated _threshold_, **k** and a _modified target value_ **$ y^* $** is computed:
+For each row of data the _target value_ is compared with the calculated _threshold_, **k** and a _modified target value_ **$y^*$** is computed:
 
 When _target value_, **$y$** is <= _threshold_, **k** the _modified target_ equals the _target value_ :
 
@@ -133,7 +133,7 @@ Where the _target value_ was unchanged, because it didn't exceed the computed _t
 
 ## One-sided Winsorisation with Expansion Estimation Example
 
-### Input Data
+### Expansion Estimation - Input Data
 
 |reference|period|group|target_value|design_weight|l_value|
 |-|-|-|-|-|-|
@@ -148,7 +148,7 @@ Where the _target value_ was unchanged, because it didn't exceed the computed _t
 |901234|202201|1002|125|50|3000|
 |123456|202201|1002|700|50|3000|
 
-_Note: No Auxiliary or Calibration Factor values provided, hence Expansion Estimation_
+**Note**: No Auxiliary or Calibration Factor values provided, hence Expansion Estimation
 
 #### Walkthrough
 
@@ -212,7 +212,7 @@ $o = \frac{y^*}{y} = \frac{303.32}{700} = 0.4333$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
-### Output Data
+### Expansion Estimation - Output Data
 
 |reference|period|outlier_weight|winsorisation_marker|
 |-|-|-|-|
@@ -229,7 +229,7 @@ As each row was considered for Winsorisation the associated marker is set as "W"
 
 ## One-sided Winsorisation with Ratio Estimation Example
 
-### Input Data
+### Ratio Estimation - Input Data
 
 |reference|period|group|target_value|design_weight|calibration_factor|auxiliary|l_value|
 |-|-|-|-|-|-|-|-|
@@ -244,7 +244,7 @@ As each row was considered for Winsorisation the associated marker is set as "W"
 |901234|1900|1|298|20|0.8|297|2368.579001|
 |123450|1900|1|288|20|0.8|305|2368.579001|
 
-##### Processing for Group 1
+#### Processing for Group 1
 
 For each row:
 _weight_ is taken from the product of the calibration factor and the design weight
@@ -317,11 +317,11 @@ Where the _target value_ exceeds the _threshold_ _outlier weight_, o is calculat
 
 e.g row 2
 
-$o = \frac{y^*}{y} = \frac{216.51859}{500} = 0.433303$
+$o = \frac{y^*}{y} = \frac{216.51859}{500} = 0.4333037166$
 
 As each row was considered for Winsorisation the associated marker is set as "W"
 
-### Output Data
+### Ratio Estimation - Output Data
 
 |reference|period|outlier_weight|winsorisation_marker|
 |-|-|-|-|
@@ -369,7 +369,7 @@ schema = StructType(
 
 # Read data from csv file into pyspark dataframe
 df = spark.read.csv(
-    "tests/fixture_data/outliering/winsorisation/methodology_scenarios/winsorisation_expansion.csv",
+    "winsorisation/example-data/winsorisation_ratio_input.csv",
     header=True,
     schema=schema,
 )
@@ -389,8 +389,8 @@ try:
         target_col="target_value",
         design_col="design_weight",
         l_value_col="l_value",
-        auxiliary_col=None,
-        calibration_col=None,
+        auxiliary_col="auxiliary",
+        calibration_col="calibration_factor",
         outlier_col="outlier_weight",
     )
 
