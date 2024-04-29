@@ -363,6 +363,8 @@ schema = StructType(
         StructField("group", StringType(), True),
         StructField("target_value", DecimalType(10, 2), True),
         StructField("design_weight", DecimalType(10, 2), True),
+        StructField("calibration_factor", DecimalType(10, 2), True),
+        StructField("auxiliary", DecimalType(10, 2), True),
         StructField("l_value", DecimalType(10, 2), True),
     ]
 )
