@@ -16,12 +16,12 @@ An example dataset and a walkthrough of the processing is available in a subsequ
 
 The input dataframe comprises of rows of data that must include the following fields:
 
-* Reference - Any - a unique identifier, e.g Business Reporting Unit
+* Reference - String - a unique identifier, e.g Business Reporting Unit
 * Period - String - for example "YYYY" or "YYYYMM", the period to be Winsorised
-* Cell or Group - Numeric - a number representing a stratum (e.g Standard
+* Cell or Group - String - a string representing a stratum (e.g Standard
 Industrial Classification)
 * Target Variable - Numeric - the value to be treated
-* L-value - Numeric - a pre-calculated value closely associated with the data to be processed
+* L-value - Numeric - a parameter necessary for the method to run (pre-calculated and closely associated with the data to be processed)
 * Design Weight - Numeric - a supplied weight that
 reflects the sampling design
 * Calibration Factor - Numeric - Nulls allowed, a weight that maintains the
@@ -36,7 +36,7 @@ estimation must be performed rather than expansion estimation.
 
 The Winsorisation method returns a marker indicating whether a given row of data has been used for Winsorisation or not along with an outlier weight which indicates the reduction in the associated target variable due to Winsorisation.
 
-* Reference - Any - a unique identifier, e.g Business Reporting Unit
+* Reference - String - a unique identifier, e.g Business Reporting Unit
 * Period - String - for example "YYYY" or "YYYYMM", the period to be Winsorised
 * Outlier Weight - Numeric - A value between 0 and 1 which reflects the
 reduction in a target variable due to Winsorisation
@@ -61,11 +61,11 @@ A _weight_ **w** is calculated for each row of data, for expansion estimation th
 
 $$ w = \text{design weight} $$
 
-When _weight_ **w** == 1 the marker is set as "NW_FE" and the row is removed from further calculations for Winsorisation.
+When _weight_ **w** is 1 the marker is set as "NW_FE" and the row is removed from further calculations for Winsorisation.
 
-For a _weight_ **w** not equal to 1, where _target values_ are **y** the _mean target values_, **$\bar{y}$** are caluculated as:
+For a _weight_ **w** not equal to 1, where _target values_ are **y** the _mean target values_, **$\bar{y}$** are calculated as:
 
-$$ \bar{y} = \frac{i}{n} \sum_{i=1}^{n} y_i $$
+$$ \bar{y} = \frac{1}{n} \sum_{i=1}^{n} y_i $$
 
 Using this, a _threshold_ **k** can be calculated to determine whether a _target value_ is an outlier or not:
 
@@ -80,6 +80,8 @@ A _weight_ **w** is calculated for each row of data
 $$ w = \text{calibration factor} * \text{design weight} $$
 
 When _weight_ **w** <= 1 the marker is set as "NW_AG" and the row is removed from further calculations for Winsorisation.
+
+Note: The summations below are over model groups.
 
 For a _weight_ **w** > 1 the method calculates:
 
@@ -113,7 +115,7 @@ $$ k = mu + (\frac{L}{w - 1}) $$
 
 ### Outlier Weight Calculation
 
-The threshold, **k** derived from either Expansion or Ratio Estimation is then used to determine whether a _target value_ exceeds the computed threshold. Values that exceed the threshold have an _outlier weight_, **o** calculated that is the ratio a value can be reduced by to bring it closer to the other target values in the group being analysed. It is this _outlier weight_ value that the Winsorisation method returns.
+The threshold, **k** derived from either Expansion or Ratio Estimation is then used to determine whether a _target value_ exceeds the computed threshold. Values that exceed the threshold have an _outlier weight_, **o** calculated that is the ratio a value can be reduced by to bring it closer to the threshold. It is this _outlier weight_ value that the Winsorisation method returns.
 
 For each row of data the _target value_ is compared with the calculated _threshold_, **k** and a _modified target value_ **$y^*$** is computed:
 
