@@ -21,7 +21,7 @@ The input dataframe comprises of rows of data that must include the following fi
 * Cell or Group - String - a string representing a stratum (e.g Standard
 Industrial Classification)
 * Target Variable - Numeric - the value to be treated
-* L-value - Numeric - a parameter necessary for the method to run (pre-calculated and closely associated with the data to be processed)
+* L-value - Numeric - a parameter necessary for the method to run [see [1]](#1)
 * Design Weight - Numeric - a supplied weight that
 reflects the sampling design
 * Calibration Factor - Numeric - Nulls allowed, a weight that maintains the
@@ -419,6 +419,9 @@ The ONS Statistical Methods Library at [https://statisticalmethodslibrary.ons.go
 
 * a methodological specification, which contains further detail about the mathematical definition of the method algorithm
 * a link to the github repository which contains detailed API information as part of the method code
+
+## References
+<a id="1">[1]</a> [Winsorization for Identifying and Treating Outliers in Business Surveys](https://www.researchgate.net/publication/307632859_Winsorization_for_Identifying_and_Treating_Outliers_in_Business_Surveys) - Ray Chambers, University of Southampton, Philip Kokic, Insiders GmbH and Paul Smith and Marie Cruddas, Office for National Statistics
 
 ## License
 
