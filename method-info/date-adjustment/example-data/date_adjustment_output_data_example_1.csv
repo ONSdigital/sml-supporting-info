@@ -1,6 +1,6 @@
-Reference,Contributors start date,Contributors end date,Q20,Expected start date,Expected end date,Domain,Mid-point,Equal-weighted,Calendar days,Average Weekly,Short period,Long period,Error Column,Error column,sum_of_trading_day_weights_over_contributors_returned_period,number_of_days_in_contributors_returned_period,actual_period_start_date,actual_period_end_date,number_of_days_in_actual_returned_period,sum_of_trading_day_weights_over_actual_returned_period,date_adjusted_Q20
-1,2022-06-01,2022-06-30,1184,2022-06-01,2022-06-30,A,N,N,N,N,24,42,	,,4.400000000000001,30,2022-06-01,2022-06-30,30,4.400000000000001,1184.0
-2,2022-06-04,2022-06-30,2045,2022-06-01,2022-06-30,A,N,N,N,N,24,42,	,,3.800000000000001,27,2022-06-01,2022-06-30,30,4.400000000000001,2367.8947368421054
-3,2022-06-01,2022-06-24,2013,2022-06-01,2022-06-30,A,N,N,N,N,24,42,	,,3.600000000000001,24,2022-06-01,2022-06-30,30,4.400000000000001,2460.3333333333335
-4,2022-06-01,2022-07-04,1992,2022-06-01,2022-06-30,A,N,N,N,N,24,42,	,,4.800000000000002,34,2022-06-01,2022-06-30,30,4.400000000000001,1826.0
-5,2022-05-30,2022-06-28,1027,2022-06-01,2022-06-30,A,N,N,N,N,24,42,,,4.400000000000001,30,2022-06-01,2022-06-30,30,4.400000000000001,1027.0
+,Reference,Contributors start date,Contributors end date,Q20,Expected start date,Expected end date,Domain,Mid-point,Equal-weighted,Calendar days,Average Weekly,Short period,Long period,Error column,sum_of_trading_day_weights_over_contributors_returned_period,number_of_days_in_contributors_returned_period,actual_period_start_date,actual_period_end_date,number_of_days_in_actual_returned_period,sum_of_trading_day_weights_over_actual_returned_period,date_adjusted_Q20
+0,1,2022-06-01,2022-06-30,1184,2022-06-01,2022-06-30,A,N,N,N,N,24,42,,4.400000000000001,30,2022-06-01,2022-06-30,30,4.400000000000001,1184.0
+1,2,2022-06-04,2022-06-30,2045,2022-06-01,2022-06-30,A,N,N,N,N,24,42,,3.800000000000001,27,2022-06-01,2022-06-30,30,4.400000000000001,2367.8947368421054
+2,3,2022-06-01,2022-06-24,2013,2022-06-01,2022-06-30,A,N,N,N,N,24,42,,3.600000000000001,24,2022-06-01,2022-06-30,30,4.400000000000001,2460.3333333333335
+3,4,2022-06-01,2022-07-04,1992,2022-06-01,2022-06-30,A,N,N,N,N,24,42,,4.800000000000002,34,2022-06-01,2022-06-30,30,4.400000000000001,1826.0
+4,5,2022-05-30,2022-06-28,1027,2022-06-01,2022-06-30,A,N,N,N,N,24,42,,4.400000000000001,30,2022-06-01,2022-06-30,30,4.400000000000001,1027.0

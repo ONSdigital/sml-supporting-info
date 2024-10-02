@@ -1,6 +1,6 @@
-Reference,Contributors start date,Contributors end date,Q20,Expected start date,Expected end date,Domain,Mid-point,Equal-weighted,Calendar days,Average Weekly,Short period,Long period,Error Column
-1,20220601,20220630,1184,20220601,20220630,A,N,N,N,N,24,42,	
-2,20220604,20220630,2045,20220601,20220630,A,N,N,N,N,24,42,	
-3,20220601,20220624,2013,20220601,20220630,A,N,N,N,N,24,42,	
-4,20220601,20220704,1992,20220601,20220630,A,N,N,N,N,24,42,	
-5,20220530,20220628,1027,20220601,20220630,A,N,N,N,N,24,42,
+Reference,Contributors start date,Contributors end date,Q20,Expected start date,Expected end date,Domain,Mid-point,Equal-weighted,Calendar days,Average Weekly,Short period,Long period
+1,20220601,20220630,1184,20220601,20220630,A,N,N,N,N,24,42
+2,20220604,20220630,2045,20220601,20220630,A,N,N,N,N,24,42
+3,20220601,20220624,2013,20220601,20220630,A,N,N,N,N,24,42
+4,20220601,20220704,1992,20220601,20220630,A,N,N,N,N,24,42
+5,20220530,20220628,1027,20220601,20220630,A,N,N,N,N,24,42
