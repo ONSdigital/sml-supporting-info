@@ -1,7 +1,3 @@
----
-output:
-  html_document: default
----
 [comment]: # (File naming convention: SML_UserDocs_<MethodName>_<Lang>.md )
 [comment]: # (Lang abbreviates to: Py / PySpk / R )
 
