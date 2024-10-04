@@ -6,35 +6,45 @@
 
 # Method Description
 
-
 ### Overview
 
  | Descriptive      | Details                                                  |
  |:---              | :----                                                    |
- | Support Area     | Branch or Expert Group who owns the method               | 
- | Method Theme     | Specify broad group of methods this method belongs to (e.g. imputation, editing, survival analysis, statistical disclosure control) |
- | Status           | Ready to Use / In development / In redevelopment         |
- | Inputs           | Name and description of inputs – high level description  |
- | Outputs          | Name and description of outputs - high level description |
- | Method Version   | Latest version                                           |
+ | Support Area     | Methodology - Editing & Imputation                       | 
+ | Method Theme     | Editing                                                  |
+ | Status           | Ready to Use                                             |
+ | Inputs           | Reference, question list, adjusted return, predicted value, auxillary predicted value, standardising factor, design weight, threshold |
+ | Outputs          | Reference, Score1, ScoreM, Final_Score, Selective Editing Marker, Predicted Marker |
+ | Method Version   | 1.1.0                                           |
 
 ### Summary
 
-A few sentences at most describing the method at a high level, to act as the method's "headline statement" on the SML Portal. 
- 
-This section should include, where relevant: 
+Selective Editing is an internationally recognised editing method where potential errors are prioritised according to their expected impact on key outputs, for one time period. Only respondents that are having a significant impact on published estimates will be recontacted for validation.
 
-- Describe briefly what the method is achieving, assuming no or very little prior knowledge (e.g. measuring the impact of outliers on business surveys). 
-- Provide information about the method, including its variants. 
-- Outline the strengths and limitations of the method along with explicit scenarios of where it should or shouldn’t be used. 
-- Cautions (e.g. distributions of weights should lie within X range) 
-- Present concisely all suitable alternative methods (e.g. trimming) or provide links to these methods, if relevant specifications exist in SML. 
-
+Selective Editing works by assigning a score to each important variable for a contributor where, the score reflects the impact that editing the respondent will have on the estimates. Only contributors with a score above a predetermined threshold are flagged for manual review to be validated, low scoring contributors pass through unchecked.
 
 ### Terminology
 
-This section should contain any terminology specific to this method which it would be useful to define at this stage – this should be statistical terminology, there is a section in the technical user notes to explain implementation-specific terminology.  
-
+- Contributor reference - A respondent identified by a unique
+  identifier.
+- Adjusted return - The most recent unedited returned data
+  value (for a given variable) in the current period, t.
+- Predicted value - The first predictor value (for a given
+  variable) for the current period adjusted return.
+- Auxiliary predicted value - This is the (secondary)
+  auxiliary predictor (for a given variable) for the current
+  period adjusted return.
+- Standardising factor - The domain group estimate used to
+  standardise scores within a given domain group.
+- Design weight - An a-weight, usually generated in another
+  method.
+- Selective Editing domain group - States which Selective
+  Editing domain group, a given respondent belongs to.
+- Selective Editing threshold - Unique threshold, to compare
+  to the score, for each domain group.
+- Combining function - If the method is applied to more than
+  one variable, then the scores can be combined in the
+  following ways: Average, Sum, Max, Weighted mean, Minkowski.
 
 ### Statistical Process Flow / Formal Definition
 
