@@ -48,30 +48,51 @@ Selective Editing works by assigning a score to each important variable for a co
 
 ### Statistical Process Flow / Formal Definition
 
-This section should: 
+A selective editing score is calculated for each reporting unit i in
+time t. The selective editing score is calculated by multiplying the
+design weight by the modulus of the adjusted return for reporting unit
+i at time t by the predicted value for reporting unit i at time t,
+divided by the standardising factor, and all multiplied by 100 as shown
+by the equation below.
 
-- Provide a formal definition of the method (e.g. mathematical notation, formulas used). 
-- Describe the logic of the method step-by-step. Depending on circumstances and complexity this could be text only or a flow chart, etc. 
+```asciimath
+Score = 100*{{a-weight*|current value-predicted value|}/Standardising factor}
+```
+
+The predicted value is equal to a clean response for (i.e. free from
+error adjusted return) for reporting unit i at time t-1. However, if
+a clean response for reporting unit i at time t-1 is not available
+then imputed or constructed previous period data is used. If this
+value isn't available, then the auxiliary predicted value for reporting
+unit i at time t is used.
+
+If the predicted value is the adjusted return for reporting unit i at
+time t-1 then the method output will contain a column with the ending
+"_pm" for predictive marker which will be set to 'True'.
+
+If the predicted value is the auxiliary predicted value for reporting
+unit i at time t then the method output will contain a column with the
+ending "_pm" for predictive marker which will be set to 'False'.
+
+The standardising factor is the weighted domain estimate for a given
+variable at time t-1, which is used as a means to determine a
+respondent's potential impact on key output estimates.
+
+
 
 ### Assumptions & Vailidity
 
-- List the statistical assumptions upon which the method is based. (e.g. Normality of data) 
-- Explain whether the method is still valid if an assumption is violated (if the method is not valid what are the options to overcome this e.g. could a transformation be applied, can violating records be deleted) 
-
-### Worked Example (optional) 
-
-Provide a simple worked through example of the method. This should focus on the mathematics of the method more-so than the code – a work-through of the technical implementation of the method should be included in the user notes. 
-
-
-### Issues for Consideration (optional) 
-
-Detail any relevant considerations to be aware of that haven’t been covered in the rest of the specification. 
-
-
-### References (optional) 
-
-This section should contain the list of references used in the specification. These should be publicly available resources accessible outside of ONS. This allows anyone reading the specification to read the reference material. 
-
+- All data inputs required by the method are available and are on a
+  standardised basis.
+- The predicted variable and auxiliary predicted value should both
+  be good predictors of the returned data for time t.
+- The predicted value in the score calculation must have been cleaned
+  and free from errors. This is not limited to genuine returns, and
+  it may be an imputed or constructed value if a clean response is
+  not available.
+- Each respondent is clearly classified into one mutually exclusive
+  domain group.
+- The thresholds specified are valid and appropriate (>0)
 
 
 # User Notes
@@ -119,52 +140,105 @@ This section should:
 
 ### Assumptions and Validity 
 
-- List the technical assumptions upon which the method is based. E.g. data formatted correctly 
-- Explain whether the method is still valid if an assumption is violated (if the method is not valid what are the options to overcome this e.g. could a transformation be applied, can violating records be deleted) 
-
+- If the "weighted mean score" is selected to combine score, then the
+  sum of the weights provided should total to 1.
+- The method will automatically assign
+adjusted return (ar), predicted value (pv), auxiliary predicted
+value (apv) and standardising factor (sf) based on the column names
+of the inputs. 
+- Unless otherwise noted, fields must not contain Null values. All other
+fields shall be ignored.
 
 ## How to Use the Method
 
-This section must contain: 
+Once the selective editing method is available on your computer you will be
+able to call the method and perform selective editing on a dataset. 
 
-- an example and description of the input data 
-- an example snippet of code importing and using the method 
-- an example and description of the output data produced 
-
-Note: example data sets referenced in the notes must be available in an 
-appropriate format (e.g csv) alongside the user notes.
+The input dataset will need to contain a specific suffix structure for each question used in
+calculating the score. The adjusted return value will have '_ar', the
+predicted value will have '_pv', the auxiliary predicted value will
+have '_apv', the standardising factor will have '_sf' and the weight
+(if weighted scores are chosen) will have '_wt', where the sum of '_wt'
+has to add up to 1.
 
 ### Method Input
 
-This section should list and describe: 
+Input records must include the following fields of the
+correct types:
 
-- The input required (to apply the method). 
-- The necessary variables from the input (i.e. only the variables that will be used to create the outputs). 
+- reference (any type): Unique to each respondent. 
+- design_weight (numeric): Also known as the a-weight. 
+- threshold (numeric): This is the selective editing threshold. This is unique for
+each domain and are specified by Methodology. 
+- question_1_ar (numeric): This is the adjusted return for question 1. The adjusted
+return has usually been through other editing strategies before Selective
+Editing. 
+- question_1_pv (numeric): This is the predicted value for question 1, usually the
+respondent's value from the previous period. 
+- question_1_apv (numeric): This is the auxiliary predicted variable used in case
+there is not a previous period value available. 
+- question_1_sf (numeric): This is the standardising factor which is the weighted
+domain estimate for the previous period. 
+- question_1_wt (numeric): This column is a weight column which is used in case the
+weighted option is used in the combination method. 
 
-See below for an example table used to describe input variables. 
 
- | Variable definition | Type of variable | Format of specific variable (if applicable) | Expected range of the values | Meaning of the values | Expected level of aggregation  | Frequency | Comments | 
- | :---  | :---- | :---- | :---- | :---  | :---- | :---- | :---- | 
- | e.g. 10-digit enterprise reference number | e.g. character; integer; doubl | e.g. date YYYY-MM-DD | e.g. weights should be greater than 0 | e.g. Stagger = 0 indicates that the reporting period is a month | e.g. RU level; VAT unit level; Enterprise level | e.g. quarterly, monthly, annual |      | 
- |           |      |      |      |          |      |      |      | 
+
+
+**Example**
+
+ | Reference | design_weight | threshold | question_1_ar | question_1_pv | question_1_apv | question_1_sf | question_1_wt |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 49900001 | 20 | 0.6 | 800 | | 424 | 800000 | 1 |
+| 49900002 | 20 | 0.6 | 656 | 390 | 259 | 800000 | 1 |
+| 49900003 | 20 | 0.6 | 997 | 773 | 912 | 800000 | 1 |
+| 49900004 | 20 | 0.6 | 676 |  | 334 | 800000 | 1 |
+| 49900005 | 20 | 0.6 | 632 | 871 | 684 | 800000 | 1 |
+| 49900006 | 20 | 0.6 | 985 | 345 | 312 | 800000 | 1 |
+| 49900007 | 20 | 0.6 | 468 | 963 | 773 | 800000 | 1 |
+| 49900008 | 20 | 0.6 | 772 | 733 | 833 | 800000 | 1 |
+| 49900009 | 20 | 0.6 | 621 | 673 | 898 | 800000 | 1 |
+| 49900010 | 20 | 0.6 | 736 | 377 | 646 | 800000 | 1 |
    
 
 ### Method Output 
 
-This section should: 
+Output records will contain the following fields with the
+following types:
+New columns are produced from running the method and are described below:
 
-- List the expected output data including any auxiliary output/information that 
-would be useful for analysis (e.g. summary statistics of weights). 
-- List the variables in the output and describe the new variables generated. 
+- question_1_s: This is the score for question 1.
+- question_1_pm: This is a predicted marker. This will indicate whether you
+are using the predicted value (True) or using the auxiliary value (False).
+- Final_score: the score after the combination method has been considered and
+is the value that is compared to the threshold.
+- Selective_edting_marker: This will show whether the respondent has passed
+Selective Editing (True) or failed Selective Editing (False).
 
-See below for an example table used to describe new output variables, columns 
-are context dependent so will vary between specifications. 
+The output gets exported as a csv file and will give you the scores and what
+values were used, whether it is the previous period value or the auxiliary
+value.
 
- | Variable definition | Type of variable | Format of specific variable (if applicable) | Expected range of the values | Meaning of the values | Expected level of aggregation  | Frequency | Comments | 
- | :---  | :---- | :---- | :---- | :---  | :---- | :---- | :---- | 
- | e.g. 10-digit enterprise reference number | e.g. character; integer; doubl | e.g. date YYYY-MM-DD | e.g. weights should be greater than 0 | e.g. Stagger = 0 indicates that the reporting period is a month | e.g. RU level; VAT unit level; Enterprise level | e.g. quarterly, monthly, annual |      | 
- |           |      |      |      |          |      |      |      | 
-  
+| Reference | design_weight | threshold | question_1_ar | question_1_pv | question_1_apv | question_1_sf | question_1_s | question_1_pm | final_score | selective_editing_marker
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 49900001 | 20 | 0.6 | 800 | | 424 | 800000 | 0.94 | FALSE | 0.94 | FALSE |
+| 49900002 | 20 | 0.6 | 656 | 390 | 259 | 800000 | 0.665 | TRUE | 0.665 | FALSE |
+| 49900003 | 20 | 0.6 | 997 | 773 | 912 | 800000 | 0.56 | TRUE | 0.56 | TRUE |
+| 49900004 | 20 | 0.6 | 676 |  | 334 | 800000 | 0.855 | FALSE | 0.855 | FALSE |
+| 49900005 | 20 | 0.6 | 632 | 871 | 684 | 800000 | 0.5975 | TRUE | 0.5975 | TRUE |
+| 49900006 | 20 | 0.6 | 985 | 345 | 312 | 800000 | 1.6 | TRUE | 1.6 | FALSE |
+| 49900007 | 20 | 0.6 | 468 | 963 | 773 | 800000 | 1.2375 | TRUE | 1.2375 | FALSE |
+| 49900008 | 20 | 0.6 | 772 | 733 | 833 | 800000 | 0.0975 | TRUE | 0.0975 | TRUE |
+| 49900009 | 20 | 0.6 | 621 | 673 | 898 | 800000 | 0.13 | TRUE | 0.13 | TRUE |
+| 49900010 | 20 | 0.6 | 736 | 377 | 646 | 800000 | 0.8975 | TRUE | 0.8975 | FALSE |
+
+
+
+References 49900001 and 49900004 do not have predicted values available for the
+score calculation and therefore uses the auxiliary value, we can see in the
+sheet that it's blank but also question_1_pm is False which shows that the
+auxiliary is used. The rest of the respondents have the predicted value
+available, question_1_pm is True.
 
 ### Example (Synthetic) Data
 
