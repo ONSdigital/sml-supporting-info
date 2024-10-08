@@ -52,7 +52,9 @@ To generate summary and headline statistics for a reporting period it is importa
 
 The basic date adjustment method is:
 
-Adjusted response = Original response * Sum of the weights of the desired period / Sum of the weights of the response.
+```asciimath
+Adjusted response = Original response * Sum of weights of desired period / Sum of weights of response
+```
 
 A contributor will give a response for a period, this does not have to match the expected period, and will be fed into the method. Data which have the same returned and expected start and end dates may have this method applied but no adjustments will be made as the input data is fit for purpose. Where this is not the case trading day weights are assigned to each day covered by the contributor’s returned period and the expected period. These are then summed to provide a sum for the total trading day weights for the returned and expected periods respectively. The expected period total trading day weights are divided by the contributor’s returned period total trading day weights. This ratio is then applied to the contributor’s response so that it is representative of the expected period.
 
