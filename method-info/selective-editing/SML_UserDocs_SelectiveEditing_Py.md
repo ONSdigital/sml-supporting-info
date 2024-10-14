@@ -118,6 +118,7 @@ the reporting unit is marked True and the respondent does not require validation
 **This method requires Python >=3.7.1, <4.0.0 and uses the Pandas package >=1.3.5, <=v1.5.3.**
 
 If you are using Pandas >=2.0 this will be uninstalled and v1.5.3 installed.
+
 ><sub>To prevent downgrading software on your system, we recommend creating a virtual environment to install and run SML methods. This will enable you to install the method with the required version of Python, etc, without disrupting the newer versions you may be running on your system. If you’re new to virtual environments, please see our guidence on installing a method in the Help centre of our SML website to get started. Otherwise, use your preferred method to create a virtual environment with the correct software versions.</sub>
 
 
@@ -248,7 +249,7 @@ Expected output after running the worked example:
 ## Worked Example
 
 
-```
+```py
 import pandas as pd
 import sml_small.selective_editing as seled
 
