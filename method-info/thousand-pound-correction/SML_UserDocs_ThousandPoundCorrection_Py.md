@@ -11,46 +11,159 @@
 
  | Descriptive      | Details                                                  |
  |:---              | :----                                                    |
- | Support Area     | Branch or Expert Group who owns the method               | 
- | Method Theme     | Specify broad group of methods this method belongs to (e.g. imputation, editing, survival analysis, statistical disclosure control) |
- | Status           | Ready to Use / In development / In redevelopment         |
- | Inputs           | Name and description of inputs – high level description  |
- | Outputs          | Name and description of outputs - high level description |
- | Method Version   | Latest version                                           |
+ | Support Area     | Methodology – Processing, Editing & Imputation           | 
+ | Method Theme     | Automatic Editing |
+ | Status           | Ready to Use         |
+ | Inputs           | Unique identifier, Principle variables, Target variable(s), Predictive variable, Auxillary variable, Upper limit, Lower limit, Precision   |
+ | Outputs          | TCP ratio, Final principle variable, Final target variables, TCP marker |
+ | Method Version   | 1.1.0                                           |
 
 ### Summary
 
-A few sentences at most describing the method at a high level, to act as the method's "headline statement" on the SML Portal. 
- 
-This section should include, where relevant: 
-
-- Describe briefly what the method is achieving, assuming no or very little prior knowledge (e.g. measuring the impact of outliers on business surveys). 
-- Provide information about the method, including its variants. 
-- Outline the strengths and limitations of the method along with explicit scenarios of where it should or shouldn’t be used. 
-- Cautions (e.g. distributions of weights should lie within X range) 
-- Present concisely all suitable alternative methods (e.g. trimming) or provide links to these methods, if relevant specifications exist in SML. 
+The thousand pounds correction is commonly used across business surveys. A thousand pounds error occurs when the respondent should have reported values in thousands of pounds but 
+has reported in actual pounds e.g., returned a value of £56,000 instead of correctly submitting 56. This method checks values against user-defined thresholds to automatically detect and correct thousand pounds errors.
 
 
 ### Terminology
 
-This section should contain any terminology specific to this method which it would be useful to define at this stage – this should be statistical terminology, there is a section in the technical user notes to explain implementation-specific terminology.  
-
+* Contributor - A member of the sample; identified by a unique identifier.
+* Record - A set of values for each contributor and period.
+* Target Period - The period currently undergoing data validation.
+* Principal Variable – Variable that the method is working on and will
+ determine if the remaining monetary variables, if any, will be
+ automatically corrected.
+* Target Variable(s) – List of all monetary variables that may be automatically
+ corrected, excluding the principal variable.
+* Target Record - A contributor's record in the target period.
+* Predictive Variable - The corresponding value used as predictor for the
+ principal variable for each contributor.
+* Predictive Record - The record containing a contributor's predictive value.
+* Predictive Period - The period containing predictive records; defined
+ relative to the target period.
+* Auxiliary variable - An alternative variable used as a predictor for a
+ contributor's principal variable, where the predictive value is not available
+ for a given contributor (i.e. where the contributor was not sampled in the
+ predictive period).
+* Responder - A contributor who has responded to the survey within a given period.
+* Precision – The precision value determines the level of accuracy for the
+ floating point calculations in significant figures.
 
 ### Statistical Process Flow / Formal Definition
 
-This section should: 
+A principal variable must be specified as a priority indictor for whether a
+ thousand pounds error has occurred. The method checks the principal variable
+ for a given contributor to determine whether the ratio of the principal variable
+ by the predictive variable is within a fixed set of upper and lower thresholds.
+ If the ratio lies within these thresholds, then a thousand pounds correction is
+ automatically applied to the principal variable and the rest of the target
+ variables, if any, are automatically corrected.
 
-- Provide a formal definition of the method (e.g. mathematical notation, formulas used). 
-- Describe the logic of the method step-by-step. Depending on circumstances and complexity this could be text only or a flow chart, etc. 
+If the predictive period’s data is missing, then the method is not applied, unless
+ an appropriate variable that is well correlated with the target variable is
+ available to the user. The auxiliary variable should not be read into the data
+ if the user does not require it.
+
+### 6.2 Error Detection
+
+The error detection calculation is applied to each contributor and calculates the
+ ratio of the principal variable and predictive variable at the contributor level.
+ The principal variable is the current period data value, and the predictive variable
+ is the corresponding previous period data value, if the contributor was previously
+ sampled. Previous period data can be a clean response, imputed or constructed data
+ value. If there is no predictive value available (i.e., the contributor was
+ not sampled in the previous period), then a well correlated alternative
+ auxiliary variable can be used if available required by the user. Note that
+ the auxiliary variable should be recorded in the same denomination as
+ the target variable.
+
+If the ratio is within the predefined upper and lower thresholds, then a
+ thousand pounds error is detected.
+
+If the predictive or auxiliary variable's value is zero or missing, then the method
+ does not continue. A thousand pounds error is neither detected nor corrected.
+
+### 6.3 Error Correction
+
+A detected thousand pounds error will be automatically corrected by dividing the
+ principal variable (i.e., suspicious returned value) by 1000 then rounding to
+ the nearest whole number.
+
+All other monetary questions, the target variables excluding the principal variable,
+ on the form will be automatically corrected as described without checking the
+ returned or corresponding previous values.
+
+### 6.4 Exception Handling
+
+In the case of the method experiencing processing issues, the method shall not result
+ in any output records. Instead, a suitable error description shall be emitted.
+
+## 7.0 Calculations
+
+### 7.1 Error Detection Calculation
+
+If a predictive value for the principal question *q* is available for contributor
+ *i* at time *t-1*, then a thousand pounds error is detected if the following ratio
+ lies within the defined lower or upper thresholds, $L_{Lower}$
+ or $L_{Upper}$.
+
+$$ \large L_{Lower} < \frac{y_{i, q, t}}{y_{i, q, t-1}} < L_{Upper} $$
+
+```asciimath
+L_{Lower} < \frac{y_{i, q, t}}{y_{i, q, t-1}} < L_{Upper}
+```
+
+Where $y_{i, q, t}$ is the returned value for the principal question *q* and
+ $y_{i, q, t-1}$ is its corresponding previous period value. Previous period
+ data may be a clean response, impute or constructed data.
+
+If the ratio lies within, and not equal to, the limits, then a thousand pounds error
+ is detected; else a thousand pounds error has not been identified.
+
+If a cleared, predictive value does not exist and the user has chosen to input an
+ auxiliary variable, then the error detection calculation is as follows:
+
+$$ \large L_{Lower} < \frac{y_{i, q, t}}{x_{i, q, t}} < L_{Upper} $$
+
+```asciimath
+L_{Lower} < \frac{y_{i, q, t}}{x_{i, q, t}} < L_{Upper}
+```
+
+Where $x_{i, q, t}$ is the well correlated auxiliary variable for contributor
+ *i* and appropriately converted to the same denomination as the principal
+ variable, if necessary.
+
+If the ratio lies within the limits, then a thousand pounds error is detected;
+ else a thousand pounds error has not been identified.
+
+### 7.2 Error Correction Calculation
+
+A detected error for question *q* is automatically corrected for
+ contributor *i* at time *t* by:
+
+$$ \large \hat{y}\_{i, q, t} = \frac{y_{i, q, t}}{1000} $$
+
+```asciimath
+\hat{y}_{i, q, t} = \frac{y_{i, q, t}}{1000}
+```
+
+Where $\hat{y}\_{i, q, t}$ is the corrected value.
+
+Once the principal target variable has been corrected, all other monetary values,
+ the remaining target variables, for a given contributor will be automatically
+ corrected by the same method as described above.
 
 ### Assumptions & Vailidity
 
-- List the statistical assumptions upon which the method is based. (e.g. Normality of data) 
-- Explain whether the method is still valid if an assumption is violated (if the method is not valid what are the options to overcome this e.g. could a transformation be applied, can violating records be deleted) 
-
-### Worked Example (optional) 
-
-Provide a simple worked through example of the method. This should focus on the mathematics of the method more-so than the code – a work-through of the technical implementation of the method should be included in the user notes. 
+* A ratio inside of the upper or lower thresholds is due to a thousand pounds error
+* If the principal variable is found to be a thousand pounds error, then it is
+ assumed that all other monetary values are also thousand pounds errors
+* The principal variable and predictive value are well correlated and are intended
+ to be reported in the same denomination (i.e., thousand pounds)
+* The principal variable and auxiliary value are well correlated and intended
+ to be reported in the same denomination (i.e., thousand pounds)
+* The auxiliary variable is known and available for all contributors processed
+ by the method
+* Thresholds set are a good indication of whether a value should be corrected
 
 
 ### Issues for Consideration (optional) 
@@ -58,53 +171,34 @@ Provide a simple worked through example of the method. This should focus on the 
 Detail any relevant considerations to be aware of that haven’t been covered in the rest of the specification. 
 
 
-### References (optional) 
-
-This section should contain the list of references used in the specification. These should be publicly available resources accessible outside of ONS. This allows anyone reading the specification to read the reference material. 
-
-
 
 # User Notes
 
-### Finding and Installing the method (written by SML Team)
+### Finding and Installing the method 
 
-This method requires (Python / R) version (n.n.n) and uses the (...) package(s).
+**This method requires Python >=3.7.1, <4.0.0 and uses the Pandas package >=1.3.5, <=v1.5.3.**
 
-</sub> (If method requires older Python/R and/or packages): To prevent downgrading software on your system, we recommend creating a virtual environment to install and run SML methods. This will enable you to install the method with the required version of Python, etc, without disrupting the newer versions you may be running on your system.  
-If you’re new to virtual environments, feel free to use this guide (link to Python or R portal guidance as appropriate) to get started. Otherwise, use your preferred method to create a virtual environment with the correct software versions.</sub>
+If you are using Pandas >=2.0 this will be uninstalled and v1.5.3 installed.
+
+><sub>To prevent downgrading software on your system, we recommend creating a virtual environment to install and run SML methods. This will enable you to install the method with the required version of Python, etc, without disrupting the newer versions you may be running on your system. If you’re new to virtual environments, please see our guidence on installing a method in the Help centre of our SML website to get started. Otherwise, use your preferred method to create a virtual environment with the correct software versions.</sub>
 
 
-The method package can be installed from (Artifactory / PyPI / CRAN) using the following code in the terminal or command prompt:
-
-```py
-pip install (package_name)
-```
-
-```r
-install.packages("package_name")
-```
-
-In your code you can import/load the method using:
+The method package can be installed from Artifactory/PyPI using the following code in the terminal or command prompt:
 
 ```py
-from (package_name.module_name) import (function_name)
+pip install sml_small 
 ```
 
-```r
-library(package_name)
+In your code you can import the method using:
+
+```py
+from sml_small.editing import thousand_pounds
 ```
 
-
-### Terminology 
-
-This section should contain any terminology specific to this method which it would be useful to define at this stage. 
 
 ### Requirements and Dependencies 
 
-This section should: 
-
-- Summarize any required pre-processing requirements. 
-- List any SML methods/utilities that call or depend on this method (if there are dependent SML methods please provide links). 
+This method requires input data supplied as a Pandas dataframe.
 
 
 ### Assumptions and Validity 
