@@ -16,7 +16,7 @@
  | Status           | Ready to Use         |
  | Inputs           | Unique identifier, Principle variables, Target variable(s), Predictive variable, Auxillary variable, Upper limit, Lower limit, Precision   |
  | Outputs          | TCP ratio, Final principle variable, Final target variables, TCP marker |
- | Method Version   | 1.1.0                                           |
+ | Method Version   | 1.2.0                                           |
 
 ### Summary
 
@@ -53,30 +53,30 @@ has reported in actual pounds e.g., returned a value of £56,000 instead of corr
 A principal variable must be specified as a priority indictor for whether a
  thousand pounds error has occurred. The method checks the principal variable
  for a given contributor to determine whether the ratio of the principal variable
- by the predictive variable is within a fixed set of upper and lower thresholds.
+ to the predictive variable is within specified upper and lower thresholds.
  If the ratio lies within these thresholds, then a thousand pounds correction is
  automatically applied to the principal variable and the rest of the target
  variables, if any, are automatically corrected.
 
-If the predictive period’s data is missing, then the method is not applied, unless
+If the predictive period’s data is missing, then the method is not applied unless
  an appropriate variable that is well correlated with the target variable is
- available to the user. The auxiliary variable should not be read into the data
+ available. The auxiliary variable should not be read into the data
  if the user does not require it.
 
 ### 6.2 Error Detection
 
 The error detection calculation is applied to each contributor and calculates the
  ratio of the principal variable and predictive variable at the contributor level.
- The principal variable is the current period data value, and the predictive variable
- is the corresponding previous period data value, if the contributor was previously
- sampled. Previous period data can be a clean response, imputed or constructed data
+ The principal variable is the current period data value and the predictive variable
+ is the corresponding previous period data value (if the contributor was previously
+ sampled). Previous period data can be a clean response, imputed or constructed data
  value. If there is no predictive value available (i.e., the contributor was
  not sampled in the previous period), then a well correlated alternative
- auxiliary variable can be used if available required by the user. Note that
+ auxiliary variable can be used. Note that
  the auxiliary variable should be recorded in the same denomination as
  the target variable.
 
-If the ratio is within the predefined upper and lower thresholds, then a
+If the ratio is within the specified upper and lower thresholds, then a
  thousand pounds error is detected.
 
 If the predictive or auxiliary variable's value is zero or missing, then the method
@@ -198,7 +198,7 @@ from sml_small.editing import thousand_pounds
 
 ### Requirements and Dependencies 
 
-This method requires input data supplied as a Pandas dataframe.
+
 
 
 ### Assumptions and Validity 
@@ -209,83 +209,127 @@ This method requires input data supplied as a Pandas dataframe.
 
 ## How to Use the Method
 
-This section must contain: 
+There are several ways to use this method, according to your needs. Some example code is installed with this method and can be found in the directory where you installed sml_small
+Lib -> site packages -> sml_small -> utils -> pandas_example.py. This example walks you through applying the thousand pound correction to data formatted as a pandas dataframe.
 
-- an example and description of the input data 
-- an example snippet of code importing and using the method 
-- an example and description of the output data produced 
-
-Note: example data sets referenced in the notes must be available in an 
-appropriate format (e.g csv) alongside the user notes.
+It is also possible to run the method to one row of data at a time. Example code for this approach can be found here 
+https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/editing/thousand_pounds/example.py 
 
 ### Method Input
 
-This section should list and describe: 
 
-- The input required (to apply the method). 
-- The necessary variables from the input (i.e. only the variables that will be used to create the outputs). 
+* unique_identifier: Optional[str],  A question code/ruref/period/id/combination of all of these
+* principal_variable: float,  Original response value provided for the 'current' period
+* predictive: Optional[float], Value used for 'previous' response (Returned/Imputed/Constructed)
+* auxiliary: Optional[float],  Calculated response for the 'previous' period
+* upper_limit: float,  Upper bound of 'error value' threshold
+* lower_limit: float,  Lower bound of 'error value' threshold
+* target_variables: List[TargetVariable], identifier/value pairs
+* precision: Optional[int],  Precision is used by the decimal package to ensure a specified accuracy used throughout method processing
 
-See below for an example table used to describe input variables. 
+| unique_identifier | principal_variable | predictive | auxiliary | upper_limit | lower_limit | precision |
+| --- | --- | --- | --- | --- | --- | --- |
+| 12340000001-201409-q100 | 50000000 | 60000 | 30000 | 1350 | 350 | 2 |
 
- | Variable definition | Type of variable | Format of specific variable (if applicable) | Expected range of the values | Meaning of the values | Expected level of aggregation  | Frequency | Comments | 
- | :---  | :---- | :---- | :---- | :---  | :---- | :---- | :---- | 
- | e.g. 10-digit enterprise reference number | e.g. character; integer; doubl | e.g. date YYYY-MM-DD | e.g. weights should be greater than 0 | e.g. Stagger = 0 indicates that the reporting period is a month | e.g. RU level; VAT unit level; Enterprise level | e.g. quarterly, monthly, annual |      | 
- |           |      |      |      |          |      |      |      | 
-   
+Target variables are stored in this format:
+
+| identifier | value |
+| --- | --- |
+| q101 | 500 | 
+| q102 | 1000 | 
+| q103 | 1500 | 
+| q104 | None | 
+
+
 
 ### Method Output 
 
-This section should: 
+Example output table:
 
-- List the expected output data including any auxiliary output/information that 
-would be useful for analysis (e.g. summary statistics of weights). 
-- List the variables in the output and describe the new variables generated. 
+| unique_identifier | principal_final_value | target_variables | tpc_ratio | tpc_marker |
+| --- | --- | --- | --- | --- |
+| '12340000001-201409-q100' | '5.0E+4' | [TargetVariable(identifier='q101', original_value='500', final_value='0.5'), TargetVariable(identifier='q102', original_value='1000', final_value='1'), TargetVariable(identifier='q103', original_value='1500', final_value='1.5'), TargetVariable(identifier='q104', original_value=None, final_value=None)] | '8.3E+2' | 'C' |
 
-See below for an example table used to describe new output variables, columns 
-are context dependent so will vary between specifications. 
+Output attributes:
+* unique_identifier - A question code/ruref/period/id/combination of all of these
+* principal_final_value – Output value that may or may not be adjusted
+* target_variables - Identifier/value pairs which may or may not be adjusted (returned as TargetVariable objects)
+* tpc_ratio – Ratio of the principal variable against good/predictive/auxillary response
+* tpc_marker - 'C' for correction applied, 'N' for no correction applied, 'S' for method stop / error
 
- | Variable definition | Type of variable | Format of specific variable (if applicable) | Expected range of the values | Meaning of the values | Expected level of aggregation  | Frequency | Comments | 
- | :---  | :---- | :---- | :---- | :---  | :---- | :---- | :---- | 
- | e.g. 10-digit enterprise reference number | e.g. character; integer; doubl | e.g. date YYYY-MM-DD | e.g. weights should be greater than 0 | e.g. Stagger = 0 indicates that the reporting period is a month | e.g. RU level; VAT unit level; Enterprise level | e.g. quarterly, monthly, annual |      | 
- |           |      |      |      |          |      |      |      | 
+
+An example output CSV file has been provided in the example_data folder.
+ 
   
 
-### Example (Synthetic) Data
+### Example applying the correction one row at a time
 
-This section should contain links to synthetic input and output data.
+Example input and output data can be found here https://github.com/ONSdigital/sml-supporting-info/tree/new-user-doc-template/method-info/thousand-pound-correction/example_data
 
 ## Worked Example
 
-Provide a simple worked through example of the method. 
+The code below shows you how to run the method with the example input in the table above. This is an instance of using the method on one row of data at a time. 
 
-### Treatment of Special Cases 
+```python
+from sml_small.editing import thousand_pounds
 
-Are there any special cases to be aware of? For example: 
+output = thousand_pounds(
+    unique_identifier = "12340000001-201409-q100",
+    principal_variable = "50000000",
+    predictive = "60000",
+    auxiliary = "30000",
+    upper_limit = "1350",
+    lower_limit = "350",
+    target_variables = {"q101": 500,
+                        "q102": 1000,
+                        "q103": 1500,
+                        "q104": None},
+    precision = 2
+)
+```
+The output will be returned as an object. You will need to destructure the object to extract the values and one way of doing this is using the built-in function vars(). vars() is used to return the \_\_dict\_\_ attribute for the specified module, class, instance or any other object with a \_\_dict\_\_ attribute.
+```python
+print(vars(output))
+```
 
-- How should the method should treat missing/null/zero/extreme values  
-- For a time-series method how are the ends of the time-series treated? 
+```bash
+{'unique_identifier': '12340000001-201409-q100', 'principal_final_value': '5.0E+4', 'target_variables': [TargetVariable(identifier='q101', original_value='500', final_value='0.5'), TargetVariable(identifier='q102', original_value='1000', final_value='1'), TargetVariable(identifier='q103', original_value='1500', final_value='1.5'), TargetVariable(identifier='q104', original_value=None, final_value=None)], 'tpc_ratio': '8.3E+2', 'tpc_marker': 'C'}
+```
 
-Details of special cases will depend on the method and context. 
 
-### Other Outputs and Metadata (optional) 
+## Example using the Pandas Wrapper
 
-This section should describe the metadata that is produced by the method. This could include, for example, intermediate datasets created during the process or summary statistics that can later be used to investigate the performance/suitability of a method. A few examples could include: 
+To view the code of the pandas wrapper you can find the `pandas_wrapper.py` file within the `utils` directory.
 
-- Number of times a given donor was used in an imputation run 
-- The distribution of g weights in estimation (perhaps highlighting the number outside the range 0.7<g<1.4, summary stats on design weight distribution) 
-- Selective editing - Business level data showing every iteration of selective editing score that was calculated for each contributor in a given period or a dataset containing all versions of returned and adjusted data values for a given reference at that current point in time 
-- History of the type of imputation for a given business (e.g. forward, backward, construction) 
+### Prerequisites: Pandas Wrapper
 
-### Issues for Consideration (optional) 
+In order to run some of the functions in the python `pandas_wrapper.py`, you will need to have `pandas` and `numpy` installed.
 
-Detail any relevant considerations to be aware of that haven’t been covered in the rest of the specification. 
+To install `pandas`:
 
-### Appendix (optional) 
+```python
+pip install pandas
+```
 
-This section should include: 
+To install `numpy`:
 
-- Details not covered in the “Background” section. 
-- The variable description tables discussed in the sections “Input Data” and “Output Data” 
+```python
+pip install numpy
+```
+
+## Pandas Wrapper Usage
+
+You will have to create a new python file importing in the `pandas_wrapper.py`. In this file you will have to write functions to read a CSV file and pass 
+in the data as a DataFrame into the *`wrapper`* function from the `pandas_wrapper.py` file.
+
+
+We have an example of how to do this in the `pandas_example.py` file within the `utils` directory. You can also find the file here 
+https://github.com/ONSdigital/sml-python-small/blob/main/sml_small/utils/pandas_example.py
+
+
+
+
+
 
 ### Additional Information
 
