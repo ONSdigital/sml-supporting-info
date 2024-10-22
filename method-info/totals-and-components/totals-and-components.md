@@ -68,7 +68,7 @@ To run the method using the example data above you can create a python file in y
 # sml_small/editing/totals_and_components directory and
 # the totals_and_components python file
 # to import the totals_and_components function.
-from sml_small.editing.totals_and_components.totals_and_components import totals_and_components
+from sml_small.editing import totals_and_components
 
 # We can pass our data into the method and save the output to the
 # results variable.

@@ -65,7 +65,7 @@ def thousand_pounds(
 
 Calling the method with the example data:
 ```python
-from thousand_pounds import thousand_pounds
+from sml_small.editing import thousand_pounds
 
 output = thousand_pounds(
     unique_identifier = "12340000001-201409-q100",
