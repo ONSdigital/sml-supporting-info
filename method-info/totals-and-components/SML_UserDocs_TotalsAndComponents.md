@@ -224,7 +224,7 @@ If the conditions described in the subsections of section 1 are satisfied
  for a given contributor:
 
 $$ \large y_{1, t} + \dots + y_{n, t} = y_{total, t} $$
-`
+
 Where $y_{1, t}$ to $y_{n, t}$ are prorated to
  equal $y_{total, t}$. For a given component $y_{k,t}$, the adjusted
  $\hat{y}_{k,t}$ is calculated by:
