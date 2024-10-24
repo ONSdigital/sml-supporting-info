@@ -309,18 +309,23 @@ Input records must include the following fields of the correct types:
 - Absolute Difference Threshold - represented as a decimal
 - Percentage Difference Threshold - represented as a decimal
 
-Note, populating the parameters with zeros is not equivalent to leaving
-them blank.
+Note: 
+
+- Although Predictive Variable and Auxiliary Variable are both optional, one 
+of these will need to be provided for the method to run without stopping early.
+- In the same way, one of Absolute Difference Threshold and Percentage Difference 
+Threshold need to be provided.
+- Populating the parameters with zeros is not equivalent to leaving them blank.
 
 **Example**
 
-| identifier | total | comp_1 | comp_2 | comp_3 | comp_4 | amend_total | predictive | precision | auxiliary | absolute_difference_threshold | percentage_difference_threshold | expected_result | test_id |
-| --- | --- | ---  | --- | --- | --- | ---   | ---   | --- |--- | --- | --- | --- | --- |
-| 1 | 1689  |  632 | 732 | 101 | 165 | False | 1689  |  10 |    |  28 | 0.1 |     |     |
-| 2 |    0  |    7 |   0 |   2 |   2 | True  |    0  |  28 |    |  11 |     |     |     |
-| 3 |   11  |    0 |   0 |   0 |   0 | False |   11  |  28 |    |  11 |     |     |     |
-| 4 | 10811 | 9201 | 866 | 632 | 112 | True  | 10811 |  28 |    |     | 0.1 |     |     |
-| 5 | 12492 | 9201 | 866 | 632 | 112 | True  | 12492 |  28 |    |     | 0.1 |     |     |
+| identifier | total | comp_1 | comp_2 | comp_3 | comp_4 | amend_total | predictive | precision | auxiliary | absolute_difference_threshold | percentage_difference_threshold | 
+| --- | --- | ---  | --- | --- | --- | ---   | ---   | --- |--- | --- | --- | 
+| 1 | 1689  |  632 | 732 | 101 | 165 | False | 1689  |  10 |    |  28 | 0.1 |
+| 2 |    0  |    7 |   0 |   2 |   2 | True  |    0  |  28 |    |  11 |     |
+| 3 |   11  |    0 |   0 |   0 |   0 | False |   11  |  28 |    |  11 |     |
+| 4 | 10811 | 9201 | 866 | 632 | 112 | True  | 10811 |  28 |    |     | 0.1 |
+| 5 | 12492 | 9201 | 866 | 632 | 112 | True  | 12492 |  28 |    |     | 0.1 |
 
 ### Method Output 
 
@@ -340,7 +345,7 @@ The TCC marker returned show if and what the method has corrected:
 * C = Components corrected
 * N = No correction required, i.e., the total is equal to the components sum
 * M = Manual editing required. This marker will identify contributors where the discrepancy between the total and component is deemed too large for automatic correction.
-* S = Method stops. This may be due to insufficient data to run the method, or one of the relevant zero cases as described in 6.3 has occurred.
+* S = Method stops. This may be due to insufficient data to run the method, or one of the relevant zero cases has occurred.
 
 
 **Example**
@@ -413,7 +418,7 @@ totals & components for all records in a pandas dataframe.
 import pandas as pd
 from sml_small.utils.pandas_wrapper import wrapper
 
-datafile = "totals_components_input_data_example.csv"
+datafile = "totals_and_components_input_data_example.csv"
 df = pd.read_csv(datafile)
 
 # Specify all columns to be appended to output dataframe
@@ -443,7 +448,7 @@ totals_and_components_output = wrapper(
 
 # Save the output dataframe to a csv file
 totals_and_components_output.to_csv(
-    "totals_components_output_data_example.csv",index=False)
+    "totals_and_components_output_data_example.csv",index=False)
 ```
 
 ### Additional Information
