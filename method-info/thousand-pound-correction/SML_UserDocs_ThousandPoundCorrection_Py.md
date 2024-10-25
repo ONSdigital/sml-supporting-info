@@ -59,7 +59,7 @@ A principal variable must be specified as a priority indictor for whether a
 
 If the predictive period’s data is missing, then the method is not applied unless an appropriate variable that is well correlated with the target variable is available. The auxiliary variable should not be read into the dataif the user does not require it.
 
-### 6.2 Error Detection
+** Error Detection **
 
 The error detection calculation is applied to each contributor and calculates the
  ratio of the principal variable and predictive variable at the contributor level.
@@ -72,7 +72,7 @@ If the ratio is within the specified upper and lower thresholds, then a thousand
 
 If the predictive or auxiliary variable's value is zero or missing, then the method does not continue. A thousand pounds error is neither detected nor corrected.
 
-### 6.3 Error Correction
+** Error Correction **
 
 A detected thousand pounds error will be automatically corrected by dividing the
  principal variable (i.e., suspicious returned value) by 1000 then rounding to
@@ -82,14 +82,14 @@ All other monetary questions, the target variables excluding the principal varia
  on the form will be automatically corrected as described without checking the
  returned or corresponding previous values.
 
-### 6.4 Exception Handling
+** Exception Handling **
 
 In the case of the method experiencing processing issues, the method shall not result
  in any output records. Instead, a suitable error description shall be emitted.
 
-## 7.0 Calculations
+### Calculations
 
-### 7.1 Error Detection Calculation
+** Error Detection Calculation **
 
 If a predictive value for the principal question *q* is available for contributor
  *i* at time *t-1*, then a thousand pounds error is detected if the following ratio
@@ -124,7 +124,7 @@ Where $x_{i, q, t}$ is the well correlated auxiliary variable for contributor
 If the ratio lies within the limits, then a thousand pounds error is detected;
  else a thousand pounds error has not been identified.
 
-### 7.2 Error Correction Calculation
+** Error Correction Calculation **
 
 A detected error for question *q* is automatically corrected for
  contributor *i* at time *t* by:
@@ -258,10 +258,12 @@ Input data (pandas wrapper example):
 
 ### Worked Examples
 
-- The method can be used in two ways:
+The method can be used in two ways:
 1. a single record can be specified as the input parameters to the method
 2. mutiple records can be supplied as a pandas dataframe to a wrapper function
 
+
+** Applying method to a single record **
 
 The following code can be used to run the thoudand pounds correction on a single record. This uses the input data for the single record example above.
 
@@ -294,11 +296,9 @@ print(vars(output))
 ```
 
 
+** Applying method to multiple records **
+
 Alternatively, a wrapper function is supplied with the method to run the thousand pound correction for all records in a pandas dataframe.
-
-This example uses the input data for the pandas wrapper example above. 
-
-### Prerequisites: Pandas Wrapper
 
 In order to run some of the functions in the python `pandas_wrapper.py`, you will need to install `regex`. You should already have installed `pandas` >= v 1.3.5 <= v 1.5.3.
 
@@ -309,12 +309,9 @@ To install `regex`:
 pip install regex
 ```
 
-## Pandas Wrapper Usage
-
 To use the wrapper you will have to create a new python file that sets up the necessary functions to execute the wrapper. 
 
-The code to do this is shown below. You can copy it directly into your project. 
-
+The code to do this is shown below. You can copy it directly into your project. This example uses the input data for the pandas wrapper example above.
 
 
 First, import the required packages.
