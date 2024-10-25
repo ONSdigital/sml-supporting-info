@@ -373,9 +373,9 @@ Expected output after running the worked example:
 
 ## Worked Example
 
-- The method can be used in two ways:
-- 1. a single record can be specified as the input parameters to the method
-- 2. mutiple records can be supplied as a pandas dataframe to a wrapper function
+The method can be used in two ways:
+1. a single record can be specified as the input parameters to the method
+2. mutiple records can be supplied as a pandas dataframe to a wrapper function
 
 
 The following code can be used to run totals & components on a single record. 
