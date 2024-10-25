@@ -360,7 +360,8 @@ The TCC marker returned show if and what the method has corrected:
 
 ### Example (Synthetic) Data
 
-Files containing the example input & output data given above can be found in the github repo https://github.com/ONSdigital/sml-supporting-info/blob/new-user-doc-template/method-info/totals-and-components/example-data.
+Files containing the example input & output data given above can be found in the github repo
+https://github.com/ONSdigital/sml-supporting-info/tree/main/method-info/totals-and-components/example-data.
 
 Input data:
 
