@@ -361,7 +361,7 @@ The TCC marker returned show if and what the method has corrected:
 ### Example (Synthetic) Data
 
 Files containing the example input & output data given above can be found in the github repo
-https://github.com/ONSdigital/sml-supporting-info/tree/main/method-info/totals-and-components/example-data.
+https://github.com/ONSdigital/sml-supporting-info/tree/main/method-info/totals-and-components/example-data
 
 Input data:
 
@@ -374,7 +374,7 @@ Expected output after running the worked example:
 ## Worked Example
 
 - The method can be used in two ways:
-- 1. a single set of data can be specified as the input parameters to the method
+- 1. a single record can be specified as the input parameters to the method
 - 2. mutiple records can be supplied as a pandas dataframe to a wrapper function
 
 
