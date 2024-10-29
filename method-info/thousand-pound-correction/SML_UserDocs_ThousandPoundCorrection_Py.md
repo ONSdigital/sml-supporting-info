@@ -59,7 +59,7 @@ A principal variable must be specified as a priority indictor for whether a
 
 If the predictive period’s data is missing, then the method is not applied unless an appropriate variable that is well correlated with the target variable is available. The auxiliary variable should not be read into the dataif the user does not require it.
 
-** Error Detection **
+**Error Detection**
 
 The error detection calculation is applied to each contributor and calculates the
  ratio of the principal variable and predictive variable at the contributor level.
@@ -72,7 +72,7 @@ If the ratio is within the specified upper and lower thresholds, then a thousand
 
 If the predictive or auxiliary variable's value is zero or missing, then the method does not continue. A thousand pounds error is neither detected nor corrected.
 
-** Error Correction **
+**Error Correction**
 
 A detected thousand pounds error will be automatically corrected by dividing the
  principal variable (i.e., suspicious returned value) by 1000 then rounding to
@@ -82,14 +82,14 @@ All other monetary questions, the target variables excluding the principal varia
  on the form will be automatically corrected as described without checking the
  returned or corresponding previous values.
 
-** Exception Handling **
+**Exception Handling**
 
 In the case of the method experiencing processing issues, the method shall not result
  in any output records. Instead, a suitable error description shall be emitted.
 
 ### Calculations
 
-** Error Detection Calculation **
+**Error Detection Calculation**
 
 If a predictive value for the principal question *q* is available for contributor
  *i* at time *t-1*, then a thousand pounds error is detected if the following ratio
@@ -263,7 +263,7 @@ The method can be used in two ways:
 2. mutiple records can be supplied as a pandas dataframe to a wrapper function
 
 
-** Applying method to a single record **
+**Applying method to a single record**
 
 The following code can be used to run the thoudand pounds correction on a single record. This uses the input data for the single record example above.
 
@@ -296,7 +296,7 @@ print(vars(output))
 ```
 
 
-** Applying method to multiple records **
+**Applying method to multiple records**
 
 Alternatively, a wrapper function is supplied with the method to run the thousand pound correction for all records in a pandas dataframe.
 
