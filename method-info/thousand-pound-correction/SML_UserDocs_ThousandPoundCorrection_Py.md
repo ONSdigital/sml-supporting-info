@@ -124,7 +124,7 @@ Where $x_{i, q, t}$ is the well correlated auxiliary variable for contributor
 If the ratio lies within the limits, then a thousand pounds error is detected;
  else a thousand pounds error has not been identified.
 
-** Error Correction Calculation **
+**Error Correction Calculation**
 
 A detected error for question *q* is automatically corrected for
  contributor *i* at time *t* by:
