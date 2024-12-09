@@ -1,5 +1,5 @@
 > [!CAUTION]  
-> We are using a new repository to store SML user documantation. 
+> We are using a new repository to store SML user documentation. 
 > Our current User Guides and example data can be found in the [SML User Docs](https://github.com/ONSdigital/sml-user-docs) repository.
 
 
