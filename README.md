@@ -1,3 +1,8 @@
+> [!CAUTION]  
+> We are using a new repository to store SML user documentation. 
+> Our current User Guides and example data can be found in the [SML User Docs](https://github.com/ONSdigital/sml-user-docs) repository.
+
+
 # Overview
 
 This repository holds supporting documentation for the methods available from the ONS Statistical Methods Library (SML). The repository will be added to over time and will include information such as:

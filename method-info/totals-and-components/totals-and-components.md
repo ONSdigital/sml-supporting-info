@@ -1,5 +1,9 @@
 # Totals and Components User Notes
 
+> [!CAUTION]  
+> This is an old version of our User Notes.
+> Our current User Guides and example data can be found in the [SML User Docs](https://github.com/ONSdigital/sml-user-docs) repository.
+
 ## Finding and Installing the Method
 
 You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/access/run-a-method) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)
