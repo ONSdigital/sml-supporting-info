@@ -1,6 +1,6 @@
 > [!CAUTION]  
 > We are using a new repository to store SML user documentation. 
-> Our current User Guides and example data can be found [here:](https://onsdigital.github.io/sml-public/intro.html).
+> Our current User Guides and example data can be found [here](https://onsdigital.github.io/sml-public/intro.html).
 
 # Overview
 
