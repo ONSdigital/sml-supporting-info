@@ -2,7 +2,7 @@
 
 > [!CAUTION]  
 > This is an old version of our User Notes.
-> Our current User Guides and example data can be found here: [Selective Editing](https://onsdigital.github.io/sml-public/public_guides/SelectiveEditing.html).
+> Our current User Guides and example data can be found in the [SML User Docs](https://github.com/ONSdigital/sml-user-docs) repository.
 
 ## Finding and Installing the Method
 You can find instructions on downloading and installing the method in the [Help centre](https://statisticalmethodslibrary.ons.gov.uk/help-centre/index) of the [ONS Statistical Methods Library](https://statisticalmethodslibrary.ons.gov.uk)

@@ -2,7 +2,7 @@
 
 > [!CAUTION]  
 > This is an old version of our User Notes.
-> Our current User Guides and example data can be found here: [Thousand Pound Correction](https://onsdigital.github.io/sml-public/public_guides/ThousandPoundCorrection.html).
+> Our current User Guides and example data can be found in the [SML User Docs](https://github.com/ONSdigital/sml-user-docs) repository.
 
 ## Finding and Installing the Method
 
